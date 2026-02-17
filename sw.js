@@ -1,4 +1,4 @@
-const CACHE_NAME = 'coquerel-v31-prestige';
+const CACHE_NAME = 'coquerel-v33-origine';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
