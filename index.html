@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Saga Coquerel</title>
+    <title>Saga Coquerel - App</title>
     
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon.png">
@@ -12,60 +12,60 @@
     <meta name="theme-color" content="#4e342e">
 
     <style>
-        /* --- STYLES CSS --- */
         :root { --primary: #4e342e; --secondary: #5D4037; --gold: #B8860B; --bg: #fcfbf8; --card: #ffffff; }
         
-        body { font-family: 'Georgia', serif; background: var(--bg); margin: 0; padding-bottom: 80px; color: #222; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Georgia', serif; background: var(--bg); margin: 0; padding-bottom: 80px; color: #222; -webkit-tap-highlight-color: transparent; }
 
-        header { background: var(--primary); color: white; padding: 25px 15px; text-align: center; border-bottom: 4px solid var(--gold); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        h1 { margin: 0; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 1px; }
+        header { background: var(--primary); color: white; padding: 20px 15px; text-align: center; border-bottom: 4px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
+        h1 { margin: 0; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
 
         /* NAVIGATION BASSE */
         nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; border-top: 1px solid #ddd; box-shadow: 0 -2px 15px rgba(0,0,0,0.1); z-index: 1000; padding-bottom: env(safe-area-inset-bottom); }
-        .nav-item { flex: 1; text-align: center; padding: 12px 0; font-size: 0.7rem; color: #888; text-decoration: none; display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: color 0.2s; }
+        .nav-item { flex: 1; text-align: center; padding: 12px 0; font-size: 0.65rem; color: #888; text-decoration: none; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .nav-item.active { color: var(--gold); font-weight: bold; }
-        .nav-icon { font-size: 1.5rem; margin-bottom: 2px; }
+        .nav-icon { font-size: 1.3rem; margin-bottom: 2px; }
 
-        /* PAGES */
-        .container { max-width: 800px; margin: 0 auto; }
-        .page { display: none; padding: 15px; animation: fadeIn 0.3s ease; }
+        .container { max-width: 800px; margin: 0 auto; padding: 15px; }
+        .page { display: none; animation: fadeIn 0.3s ease; }
         .page.active { display: block; }
 
-        /* CARTES GÉNÉRATIONS */
-        .gen-card { background: var(--card); margin-bottom: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-left: 6px solid var(--primary); padding: 20px; }
-        .gen-badge { background: var(--primary); color: white; font-size: 0.7rem; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
-        .gen-name { font-size: 1.4rem; font-weight: bold; color: var(--primary); margin: 10px 0 5px 0; }
-        .gen-dates { font-size: 0.95rem; font-style: italic; color: #666; margin-bottom: 15px; }
+        /* MENU DES GÉNÉRATIONS (GRILLE) */
+        .gen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .gen-menu-card { background: white; border-radius: 12px; padding: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--primary); cursor: pointer; }
+        .menu-badge { font-size: 0.6rem; text-transform: uppercase; color: var(--gold); font-weight: bold; margin-bottom: 5px; display: block; }
+        .menu-name { font-size: 0.95rem; font-weight: bold; color: var(--primary); line-height: 1.2; }
+        .menu-date { font-size: 0.75rem; color: #888; margin-top: 5px; }
 
-        /* BLOCS INFOS */
-        .info-box { background: #f9f6f2; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #eee; }
-        .info-row { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccc; padding: 6px 0; font-size: 0.95rem; }
-        .info-row:last-child { border-bottom: none; }
-        .lbl { font-weight: bold; color: var(--secondary); font-size: 0.75rem; text-transform: uppercase; }
-        .val { color: #000; text-align: right; }
-        .spouse { color: #C2185B; font-weight: bold; }
+        /* DÉTAIL GÉNÉRATION */
+        #gen-detail { display: none; }
+        .back-btn { background: var(--primary); color: white; border: none; padding: 10px 18px; border-radius: 25px; font-size: 0.85rem; margin-bottom: 15px; cursor: pointer; }
 
-        /* SECTIONS DE TEXTE */
-        .sec-title { color: var(--gold); font-size: 0.85rem; font-weight: bold; margin-top: 20px; border-bottom: 1px solid #eee; text-transform: uppercase; letter-spacing: 0.5px; padding-bottom: 3px; }
-        .text-body { font-size: 1rem; line-height: 1.6; text-align: justify; margin-top: 8px; color: #333; }
+        .gen-card-full { background: var(--card); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-left: 6px solid var(--primary); padding: 20px; }
+        .sec-title { color: var(--gold); font-size: 0.85rem; font-weight: bold; margin-top: 20px; border-bottom: 1px solid #eee; text-transform: uppercase; padding-bottom: 3px; }
+        .text-body { font-size: 1rem; line-height: 1.6; text-align: justify; margin-top: 8px; }
 
-        /* LIENS GLOSSAIRE */
-        .glos-link { color: var(--gold); font-weight: bold; text-decoration: none; border-bottom: 1px dotted var(--gold); cursor: pointer; }
+        /* IMAGES ET ZOOM */
+        .frise-img { width: 100%; border-radius: 8px; border: 2px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px; cursor: zoom-in; }
+        #zoom-modal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+        #zoom-modal img { max-width: 95%; max-height: 95%; border: 2px solid #444; }
+        .close-zoom { position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; font-weight: bold; }
+
+        /* ÉTYMOLOGIE & STATS */
+        .ety-card { background: white; padding: 20px; border-radius: 12px; border-bottom: 4px solid var(--gold); margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .stat-box { background: #f9f6f2; padding: 12px; border-radius: 8px; text-align: center; }
+        .stat-val { display: block; font-size: 1.1rem; font-weight: bold; color: var(--gold); }
+        .stat-lbl { font-size: 0.6rem; text-transform: uppercase; color: #888; }
+        
+        .list-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #ddd; font-size: 0.9rem; }
+        .list-item:last-child { border-bottom: none; }
 
         /* GLOSSAIRE */
-        .glos-item { background: white; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid var(--gold); scroll-margin-top: 100px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .glos-item b { display: block; color: var(--primary); font-size: 1.2rem; margin-bottom: 5px; }
-        .glos-item i { color: var(--gold); font-size: 0.9rem; display: block; margin-bottom: 10px; font-style: italic; }
-        .back-to-top { text-align: center; margin-top: 20px; color: #999; font-size: 0.8rem; cursor: pointer; }
+        .glos-item { background: white; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid var(--gold); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .glos-item b { display: block; color: var(--primary); font-size: 1.1rem; margin-bottom: 3px; }
+        .glos-item i { color: var(--gold); font-size: 0.85rem; display: block; margin-bottom: 8px; font-style: italic; }
 
-        /* FRISE */
-        .timeline-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        .timeline-table { width: 100%; min-width: 350px; border-collapse: collapse; font-size: 0.85rem; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .timeline-table th { background: var(--primary); color: white; padding: 12px; text-align: left; white-space: nowrap; }
-        .timeline-table td { padding: 12px; border-bottom: 1px solid #eee; vertical-align: top; }
-        .col-year { font-weight: bold; color: var(--gold); }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -76,22 +76,72 @@
 
 <div class="container">
     <div id="ancetres" class="page active">
+        <div id="gen-list" class="gen-grid"></div>
+        
+        <div id="gen-detail">
+            <button class="back-btn" onclick="closeDetail()">← Retour</button>
+            <div id="detail-content"></div>
         </div>
+    </div>
 
     <div id="frise" class="page">
-        <div class="info-box" style="text-align: center; font-style: italic;">Dates clés mettant en regard la famille et l'Histoire de France.</div>
-        <div class="timeline-wrapper">
-            <table class="timeline-table">
-                <thead><tr><th>Date</th><th>Famille</th><th>Histoire</th></tr></thead>
+        <h2 style="color:var(--primary); text-align:center; font-size:1.1rem;">Documents Originaux</h2>
+        <p style="text-align:center; font-size:0.8rem; color:#888;">Cliquez sur une image pour zoomer.</p>
+        <img src="image1.jpg" class="frise-img" onclick="openZoom(this.src)" alt="Frise Document 1">
+        <img src="image2.jpg" class="frise-img" onclick="openZoom(this.src)" alt="Frise Document 2">
+        
+        <h2 style="color:var(--primary); text-align:center; font-size:1.1rem; margin-top:30px;">Chronologie Familiale</h2>
+        <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.8rem; background:white;">
+                <thead style="background:var(--primary); color:white;">
+                    <tr><th style="padding:10px; text-align:left;">An</th><th style="padding:10px; text-align:left;">Famille</th><th style="padding:10px; text-align:left;">Histoire</th></tr>
+                </thead>
                 <tbody id="timeline-body"></tbody>
             </table>
         </div>
     </div>
 
-    <div id="glossaire" class="page">
-        <div id="glossaire-content"></div>
-        <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑ Haut de page</div>
+    <div id="nom" class="page">
+        <div class="ety-card">
+            <h2 style="color:var(--primary); margin-top:0; font-size:1.2rem;">Étymologie du Nom</h2>
+            <p>Le nom <strong>COQUEREL</strong> est un dérivé du vieux français <em>Coq</em>. Le suffixe diminutif <em>-erel</em> servait à désigner un <strong>"petit coq"</strong>.</p>
+            <p>Dans la France médiévale, c'était un surnom imagé attribué à un homme vif, fier, ou quelque peu querelleur. Une autre hypothèse le lie à la <em>coquerelle</em>, nom populaire du fruit de l'alkékenge, reconnaissable à sa couleur rouge rappelant la crête du coq.</p>
+        </div>
+
+        <div class="ety-card">
+            <h2 style="color:var(--primary); font-size:1.2rem;">Répartition Géographique</h2>
+            <p>Le patronyme est très majoritairement présent dans le <strong>Nord-Ouest de la France</strong>.</p>
+            <div class="stat-grid">
+                <div class="stat-box"><span class="stat-val">Normandie</span><span class="stat-lbl">Région n°1</span></div>
+                <div class="stat-box"><span class="stat-val">Hauts-de-France</span><span class="stat-lbl">Région n°2</span></div>
+            </div>
+            
+            <h3 style="color:var(--secondary); font-size:0.9rem; margin-top:20px;">Top 5 des Départements :</h3>
+            <div class="list-item"><span>Seine-Maritime (76)</span><strong>Déficit/Densité Max</strong></div>
+            <div class="list-item"><span>Pas-de-Calais (62)</span><strong>Ancrage fort</strong></div>
+            <div class="list-item"><span>Eure (27)</span><strong>Bassin Historique</strong></div>
+            <div class="list-item"><span>Calvados (14)</span><strong>Présence séculaire</strong></div>
+            <div class="list-item"><span>Somme (80)</span><strong>Origine Coquerel (village)</strong></div>
+        </div>
+
+        <div class="ety-card">
+            <h2 style="color:var(--primary); font-size:1.2rem;">Statistiques Actuelles</h2>
+            <div class="stat-grid">
+                <div class="stat-item"><span class="stat-val">~2 800</span><span class="stat-lbl">Porteurs en France</span></div>
+                <div class="stat-item"><span class="stat-val">3 647<sup>e</sup></span><span class="stat-lbl">Rang national</span></div>
+            </div>
+        </div>
     </div>
+
+    <div id="glossaire" class="page">
+        <h2 style="color:var(--primary); text-align:center; font-size:1.1rem;">Encyclopédie Historique</h2>
+        <div id="glossaire-content"></div>
+    </div>
+</div>
+
+<div id="zoom-modal" onclick="closeZoom()">
+    <span class="close-zoom">&times;</span>
+    <img id="zoom-img" src="" alt="Zoom">
 </div>
 
 <nav>
@@ -101,281 +151,202 @@
     <div class="nav-item" onclick="showPage('frise', this)">
         <span class="nav-icon">📅</span><span>Frise</span>
     </div>
+    <div class="nav-item" onclick="showPage('nom', this)">
+        <span class="nav-icon">🛡️</span><span>Le Nom</span>
+    </div>
     <div class="nav-item" onclick="showPage('glossaire', this)">
         <span class="nav-icon">📖</span><span>Glossaire</span>
     </div>
 </nav>
 
 <script>
-    // --- BASE DE DONNÉES INTÉGRALE (V29) ---
+    // --- DONNÉES GÉNÉRATIONS ---
     const generations = [
         {
             gen: "I", name: "Pierre COQUEREL (l'Ancien)", dates: "v. 1575 - v. 1630",
             spouse: "Marie GORAN",
-            contexte: `Pierre l'Ancien vit une période charnière de reconstruction nationale. Il est le contemporain du roi <span class="glos-link" onclick="goToGlos('henri4')">Henri IV</span>, qui a pacifié la France après les Guerres de Religion par l'Édit de Nantes (1598). Il voit ensuite l'avènement de <span class="glos-link" onclick="goToGlos('louis13')">Louis XIII</span>.`,
-            social: `Il porte le titre de <strong>Laboureur</strong>. À Aubervilliers, cela signifie qu'il appartient à l'aristocratie paysanne : il possède ses propres bêtes de trait et sa charrue, contrairement aux manouvriers.`,
-            techno: `L'agriculture est manuelle et pénible. Le village est tourné vers son église Notre-Dame-des-Vertus, lieu de pèlerinage royal.`
+            contexte: `Pierre l'Ancien vit une période de reconstruction nationale. Il est le contemporain du roi <span class="glos-link" onclick="goToGlos('henri4')">Henri IV</span>, qui a pacifié la France après les Guerres de Religion par l'Édit de Nantes.`,
+            social: `Il porte le titre de <strong>Laboureur</strong>. À Aubervilliers, cela désigne l'élite paysanne : il possède ses propres bêtes de trait et sa charrue, contrairement aux simples manouvriers.`,
+            techno: `L'agriculture est manuelle. Aubervilliers est alors un pèlerinage royal célèbre pour son église Notre-Dame-des-Vertus.`
         },
         {
-            gen: "II", name: "Pierre COQUEREL", dates: "Décès 13 mai 1653",
-            spouse: "Marie MAHEUT (? - 1654)",
-            contexte: `C'est l'époque de <span class="glos-link" onclick="goToGlos('richelieu')">Richelieu</span>. La famille subit les troubles de <span class="glos-link" onclick="goToGlos('fronde')">La Fronde</span>, une guerre civile violente.`,
-            social: `Aubervilliers, sur la route de Paris, est pillé. Les récoltes sont réquisitionnées par les troupes royales ou frondeuses.`,
-            defis: `L'insécurité est totale. Les habitants se réfugient dans l'église fortifiée pour survivre aux passages de troupes.`
+            gen: "II", name: "Pierre COQUEREL", dates: "Décès 1653",
+            spouse: "Marie MAHEUT",
+            contexte: `Époque de <span class="glos-link" onclick="goToGlos('richelieu')">Richelieu</span>. La famille subit les troubles de <span class="glos-link" onclick="goToGlos('fronde')">La Fronde</span>, une guerre civile violente qui ravage les villages d'Île-de-France.`,
+            social: `Aubervilliers est pillé. Les récoltes sont réquisitionnées par les troupes en marche vers Paris.`,
+            defis: `L'insécurité est totale. Les habitants se cachent lors des passages de mercenaires.`
         },
         {
-            gen: "III", name: "Christophe COQUEREL", dates: "1624 - 13 mai 1657",
-            spouse: "Jeanne LEBOUT (1622 - 1670)",
+            gen: "III", name: "Christophe COQUEREL", dates: "1624 - 1657",
+            spouse: "Jeanne LEBOUT",
             contexte: `Contemporain de la jeunesse de <span class="glos-link" onclick="goToGlos('louis14')">Louis XIV</span>. Christophe meurt prématurément à 32 ans.`,
-            defis: `<strong>La Mortalité Précoce :</strong> Sa veuve Jeanne Lebout doit gérer seule l'exploitation. À cette époque, l'absence d'homme conduit souvent à la ruine, mais elle maintient le patrimoine.`,
-            techno: `Le travail physique est exténuant dès l'aube, l'hygiène reste précaire.`
+            defis: `<strong>La Mortalité Précoce :</strong> Sa veuve Jeanne Lebout gère seule l'exploitation, prouvant une force de caractère exceptionnelle pour maintenir le patrimoine.`,
+            techno: `Le travail physique est exténuant, l'hygiène reste précaire.`
         },
         {
             gen: "IV", name: "Jacques COQUEREL", dates: "1652 - 1720",
             spouse: "Catherine LEBOUT",
-            contexte: `Jacques survit au <span class="glos-link" onclick="goToGlos('hiver1709')">Grand Hiver de 1709</span>. Le sol gèle sur un mètre, les arbres éclatent, 600 000 Français meurent de faim.`,
-            social: `Il devient un <strong>Notable rural</strong>. Son mariage unit les deux plus puissantes lignées de cultivateurs locaux.`,
-            techno: `On commence à utiliser les "boues" de Paris comme engrais pour améliorer les rendements.`
+            contexte: `Jacques survit au <span class="glos-link" onclick="goToGlos('hiver1709')">Grand Hiver de 1709</span>. Le sol gèle sur un mètre, les arbres éclatent de froid.`,
+            social: `Il devient un <strong>Notable rural</strong>. Son mariage unit les deux plus puissantes familles de cultivateurs locaux.`,
+            techno: `Usage des premières formes d'engrais urbains pour doper les récoltes.`
         },
         {
             gen: "V", name: "Claude COQUEREL", dates: "1696 - 1763",
-            spouse: "Marguerite BOULAN (? - 1773)",
-            contexte: `Règne de <span class="glos-link" onclick="goToGlos('louis15')">Louis XV</span>. Période de prospérité économique et essor des Lumières.`,
-            social: `Virage vers le <strong>maraîchage intensif</strong>. Paris explose et réclame des légumes frais. Les Coquerel s'adaptent à cette demande urbaine.`,
-            techno: `Le commerce de proximité avec la capitale se développe.`
+            spouse: "Marguerite BOULAN",
+            contexte: `Règne de Louis XV. Période de prospérité économique et essor des Lumières.`,
+            social: `Virage vers le <strong>maraîchage intensif</strong>. Paris grandit et réclame des légumes frais au quotidien.`,
+            techno: `Développement des circuits courts avec les halles de Paris.`
         },
         {
             gen: "VI", name: "Pierre COQUEREL", dates: "1730 - 1816",
             spouse: "Marie Louise MALO",
-            contexte: `Il voit la chute de la Bastille en 1789 et l'exécution du Roi. Il passe du statut de "Sujet" à celui de <strong>"Citoyen"</strong> lors de la <span class="glos-link" onclick="goToGlos('revolution')">Révolution Française</span>.`,
-            defis: `Il traverse la Terreur, voit l'épopée de <span class="glos-link" onclick="goToGlos('napoleon1')">Napoléon Ier</span> et meurt sous la Restauration.`,
-            techno: `Fin du système féodal et naissance de la propriété privée moderne.`
+            contexte: `Il voit la chute de la Bastille. Il passe du statut de "Sujet" à celui de <strong>"Citoyen"</strong> lors de la <span class="glos-link" onclick="goToGlos('revolution')">Révolution Française</span>.`,
+            defis: `Il traverse la Terreur et voit l'ascension fulgurante de <span class="glos-link" onclick="goToGlos('napoleon1')">Napoléon Ier</span>.`,
+            techno: `La fin du servage de fait et la naissance de la propriété privée paysanne.`
         },
         {
             gen: "VII", name: "Pierre COQUEREL", dates: "1761 - 1852",
             spouse: "Marie TROUET",
-            contexte: `Doyen de la lignée (91 ans). Il survit au <span class="glos-link" onclick="goToGlos('cholera')">Choléra de 1832</span> qui tue 19 000 Parisiens.`,
-            social: `Sous ses yeux, Aubervilliers change : le creusement du Canal Saint-Denis amène l'industrie aux portes des champs.`,
-            techno: `Naissance des premières grandes fabriques chimiques transformant la plaine.`
+            contexte: `Doyen de la lignée (91 ans). Il survit à la grande épidémie de <span class="glos-link" onclick="goToGlos('cholera')">Choléra de 1832</span>.`,
+            social: `Le creusement du Canal Saint-Denis amène l'industrie au milieu des champs de la famille.`,
+            techno: `Apparition des premières machines agricoles simples.`
         },
         {
-            gen: "VIII", name: "Pierre Honoré C. COQUEREL", dates: "1789 - 1851",
+            gen: "VIII", name: "P.H. Claude COQUEREL", dates: "1789 - 1851",
             spouse: "Marie BOUDIER",
-            contexte: `Règne de <span class="glos-link" onclick="goToGlos('louisphilippe')">Louis-Philippe</span>. Le chemin de fer (1842) bouleverse l'agriculture locale.`,
-            social: `Devient <strong>Maître Maraîcher</strong>. Il doit lutter contre la concurrence des légumes du Midi arrivant par train.`,
-            techno: `Adoption des cultures forcées sous cloches de verre et châssis pour produire des primeurs.`
+            contexte: `Monarchie de Juillet. Le chemin de fer (1842) menace le monopole maraîcher francilien.`,
+            social: `Devient <strong>Maître Maraîcher</strong>. Spécialiste de la culture sous cloches de verre pour rester compétitif.`,
+            techno: `Méthodes de forçage des légumes pour vendre des primeurs très tôt en saison.`
         },
         {
             gen: "IX", name: "Michel Lazare COQUEREL", dates: "1815 - 1885",
             spouse: "Marie Louise DEMARS",
-            contexte: `Second Empire de <span class="glos-link" onclick="goToGlos('napoleon3')">Napoléon III</span>. Paris est transformé par Haussmann.`,
-            defis: `<strong>Héros du Siège de 1870 :</strong> Durant la guerre contre les Prussiens, il cultive sous les bombes pour nourrir Paris affamé.`,
-            techno: `Aubervilliers est alors la banlieue maraîchère la plus productive de France.`
+            contexte: `Second Empire. Paris est transformé par Haussmann.`,
+            defis: `<strong>Héros du Siège de 1870 :</strong> Durant la guerre contre les Prussiens, il cultive sous les bombes pour nourrir Paris.`,
+            techno: `Utilisation massive des 'boues de Paris' comme engrais de haute performance.`
         },
         {
             gen: "X", name: "Pierre Honoré COQUEREL", dates: "1842 - 1912",
             spouse: "Constance BONNEAU",
-            contexte: `Belle Époque. L'agriculture recule devant les usines chimiques et les savonneries qui rachètent les champs.`,
-            social: `La "Plaine des Vertus" devient une banlieue industrielle noire de fumée.`,
-            techno: `Arrivée de l'électricité, du gaz de ville et des premiers engrais chimiques de synthèse.`
+            contexte: `Belle Époque. Les usines chimiques polluantes envahissent Aubervilliers.`,
+            social: `La terre agricole est rachetée par le béton industriel.`,
+            techno: `Arrivée de l'éclairage au gaz et de l'électricité dans le village.`
         },
         {
             gen: "XI", name: "Louis Laurent COQUEREL", dates: "1880 - 1964",
             spouse: "Marie Louise LEMOINE",
-            contexte: `Traverse les deux Guerres Mondiales : l'enfer de <span class="glos-link" onclick="goToGlos('ww1')">1914-1918</span> et l'Occupation en 39-45.`,
-            social: `<strong>Dernier cultivateur</strong> de la lignée à Aubervilliers. Après lui, le lien ancestral avec la terre est rompu.`,
-            techno: `Disparition des chevaux de labour au profit des camions et tracteurs.`
+            contexte: `Traverse l'enfer de <span class="glos-link" onclick="goToGlos('ww1')">1914-1918</span> et l'Occupation en 39-45.`,
+            social: `<strong>Dernier cultivateur</strong> de la Saga. Il assiste à la fin des chevaux de labour.`,
+            techno: `Remplacement de la force animale par les premiers camions et tracteurs.`
         },
         {
             gen: "XII", name: "Louis Alfred COQUEREL", dates: "1912 - 2002",
-            spouse: "Simone SELLIER (1914-2000)",
-            contexte: `Né l'année du Titanic, il traverse les <span class="glos-link" onclick="goToGlos('trente')">Trente Glorieuses</span>. Il passe de la lampe à pétrole à l'informatique.`,
-            social: `Devient un <strong>Citoyen moderne</strong> travaillant dans le monde industriel et tertiaire.`,
-            techno: `Urbanisation totale d'Aubervilliers, la terre devient un souvenir familial.`
+            spouse: "Simone SELLIER",
+            contexte: `Témoin des <span class="glos-link" onclick="goToGlos('trente')">Trente Glorieuses</span>.`,
+            social: `Citoyen moderne. La terre n'est plus un métier mais une passion familiale.`,
+            techno: `Passage de la radio à la télévision, puis à l'ordinateur.`
         },
         {
             gen: "XIII", name: "Alain Robert COQUEREL", dates: "Né en 1948",
             spouse: "Micheline GUILLEMIN",
-            contexte: `Enfant du Baby Boom, il a 20 ans en Mai 68. Rupture définitive avec le monde paysan.`,
-            defis: `<strong>La Mémoire :</strong> Gardien des archives familiales face à une société qui s'accélère et tend à l'oubli.`,
-            social: `Entrée dans la société de consommation, des loisirs et des services.`
+            contexte: `Enfant du Baby Boom. Transition vers la vie de bureau et les services.`,
+            defis: `Gardien de la mémoire. Il sauve les archives de 400 ans d'histoire.`,
+            social: `Consommation de masse et début des loisirs modernes.`
         },
         {
             gen: "XIV", name: "Arnaud COQUEREL", dates: "Né en 1982",
             spouse: "Isabelle PASCULLI",
-            contexte: `Grandit avec l'explosion d'<span class="glos-link" onclick="goToGlos('internet')">Internet</span>. Vit la mondialisation et l'émergence de l'IA.`,
-            defis: `Concilier vie hyper-connectée et transmission d'une saga vieille de 4 siècles.`,
-            techno: `Urgence climatique et numérisation totale du travail.`
+            contexte: `Génération <span class="glos-link" onclick="goToGlos('internet')">Internet</span>.`,
+            defis: `Transmission du flambeau à l'ère numérique.`,
+            techno: `Intelligence artificielle et urgence climatique.`
         },
         {
-            gen: "XV", name: "Manon & Arthur", dates: "2016 / 2019",
+            gen: "XV", name: "Manon & Arthur", dates: "XXI<sup>e</sup> Siècle",
             spouse: "L'Avenir",
-            contexte: `Nés au XXIe siècle. Héritiers de 426 ans de persévérance à Aubervilliers.`,
-            defis: `Transition écologique et nouveaux horizons technologiques.`,
-            techno: `Génération Alpha, porteuse du flambeau des laboureurs d'autrefois.`
+            contexte: `Héritiers directs de 15 générations de Coquerel à Aubervilliers.`,
+            defis: `Réinventer le futur tout en respectant l'effort des ancêtres.`,
+            techno: `Monde ultra-connecté.`
         }
     ];
 
     const glossaire = {
-        "henri4": {
-            t: "Henri IV (1589-1610)",
-            i: "Le Roi de la Pacification",
-            c: "Premier souverain de la branche des Bourbons. Il hérite d'un royaume ruiné par 30 ans de Guerres de Religion. En signant l'Édit de Nantes en 1598, il instaure une tolérance religieuse inédite. Il relance l'agriculture nationale (la fameuse 'Poule au pot' le dimanche) avant d'être assassiné par Ravaillac."
-        },
-        "louis13": {
-            t: "Louis XIII (1610-1643)",
-            i: "Le Roi Juste",
-            c: "Fils d'Henri IV. Sous son règne, l'autorité royale se centralise fortement. Il soutient son ministre Richelieu pour briser les révoltes protestantes et la résistance des grands nobles. La France s'engage alors dans la Guerre de Trente Ans pour affaiblir les Habsbourg."
-        },
-        "richelieu": {
-            t: "Cardinal de Richelieu",
-            i: "L'Homme d'État",
-            c: "Principal ministre de Louis XIII. Sa vision est claire : soumettre la noblesse, ruiner le parti protestant et abaisser la Maison d'Autriche. Il crée l'Académie Française et jette les bases administratives de l'État moderne tel qu'on le connaît."
-        },
-        "fronde": {
-            t: "La Fronde (1648-1653)",
-            i: "La Guerre Civile des Princes",
-            c: "Une période de révoltes massives contre le pouvoir royal durant l'enfance de Louis XIV. Les campagnes d'Île-de-France (dont Aubervilliers) subissent pillages, viols et famines causés par les armées de mercenaires qui assiègent Paris. Cet événement traumatisera le futur Roi-Soleil."
-        },
-        "louis14": {
-            t: "Louis XIV (1643-1715)",
-            i: "Le Roi-Soleil",
-            c: "L'apogée de la monarchie absolue. Il déplace le pouvoir à Versailles. Son règne est marqué par une grandeur culturelle immense mais aussi par des guerres incessantes et des famines climatiques (Hiver 1709) qui épuisent le peuple paysan."
-        },
-        "hiver1709": {
-            t: "Le Grand Hiver (1709)",
-            i: "Catastrophe Climatique",
-            c: "En janvier 1709, une chute de température brutale (-20°C) frappe l'Europe. Le blé gèle, les animaux meurent, et même le vin gèle dans les carafes à Versailles. La famine qui suit tue environ 600 000 personnes en France. Pour un laboureur, survivre à cet hiver sans perdre sa ferme relève de l'héroïsme."
-        },
-        "louis15": {
-            t: "Louis XV (1715-1774)",
-            i: "Le Bien-Aimé",
-            c: "Arrière-petit-fils de Louis XIV. Son règne correspond au Siècle des Lumières. La France connaît un essor économique et intellectuel sans précédent. C'est l'époque où le maraîchage d'Aubervilliers décolle pour nourrir une population parisienne en pleine croissance."
-        },
-        "revolution": {
-            t: "Révolution Française (1789)",
-            i: "La Naissance du Citoyen",
-            c: "Effondrement de l'Ancien Régime. La chute de la Bastille et la Déclaration des Droits de l'Homme mettent fin aux privilèges seigneuriaux. Le paysan devient citoyen et propriétaire de plein droit de ses terres. C'est un bouleversement social total pour les Coquerel."
-        },
-        "napoleon1": {
-            t: "Napoléon Ier (1804-1815)",
-            i: "L'Aigle de l'Empire",
-            c: "Général républicain devenu Empereur. Il réorganise la France : création du Code Civil, des Lycées, des Préfectures. Ses guerres mobilisent des millions d'hommes mais stabilisent la propriété foncière issue de la Révolution."
-        },
-        "cholera": {
-            t: "Choléra de 1832",
-            i: "La Grande Peur Bleue",
-            c: "Pandémie foudroyante venue d'Asie. Elle frappe Paris en quelques semaines. 19 000 morts, dont le Premier ministre Casimir Perier. Cette crise force les autorités à repenser l'hygiène urbaine et l'assainissement."
-        },
-        "louisphilippe": {
-            t: "Louis-Philippe (1830-1848)",
-            i: "Le Roi-Bourgeois",
-            c: "Souverain de la Monarchie de Juillet. Il favorise le développement de l'industrie et de la banque. C'est sous son règne qu'apparaissent les premiers chemins de fer, changeant à jamais le commerce maraîcher."
-        },
-        "napoleon3": {
-            t: "Napoléon III (1852-1870)",
-            i: "L'Empereur Moderne",
-            c: "Neveu de Napoléon Ier. Il transforme Paris (Haussmann) et encourage la révolution industrielle. Il encourage le développement des chemins de fer et des canaux, plaçant Aubervilliers au cœur d'un nœud logistique."
-        },
-        "guerre1870": {
-            t: "Guerre de 1870 & Siège",
-            i: "L'Année Terrible",
-            c: "Conflit contre la Prusse. Paris est encerclé pendant 4 mois. La ville meurt de faim, mangeant les animaux du jardin des plantes. La plaine d'Aubervilliers est le théâtre de bombardements incessants."
-        },
-        "ww1": {
-            t: "Grande Guerre (1914-1918)",
-            i: "La Saignée",
-            c: "Conflit mondial total. 1,4 million de morts français, majoritairement des paysans. La France rurale est décapitée de sa jeunesse. Pour ceux qui restent, il faut travailler deux fois plus pour nourrir le front."
-        },
-        "trente": {
-            t: "Trente Glorieuses (1945-1975)",
-            i: "L'Expansion",
-            c: "Trente années de croissance exceptionnelle après la Seconde Guerre mondiale. C'est l'époque du plein emploi, de la télévision, de la voiture individuelle et de la fin de la société paysanne traditionnelle au profit de la consommation de masse."
-        },
-        "internet": {
-            t: "Révolution Numérique (1990+)",
-            i: "Le Village Global",
-            c: "L'arrivée du Web et de l'informatique domestique change radicalement l'accès au savoir, le travail et la communication. C'est l'ère de la mondialisation totale."
-        }
+        "henri4": { t: "Henri IV (1589-1610)", i: "Le Roi Pacificateur", c: "Premier roi de la branche des Bourbons, il hérite d'un pays ruiné par 30 ans de Guerres de Religion. En signant l'Édit de Nantes (1598), il instaure une tolérance religieuse exceptionnelle. Il relance l'économie rurale par des slogans forts comme 'la poule au pot' et la reconstruction des routes et canaux. Il est assassiné par Ravaillac en 1610." },
+        "richelieu": { t: "Cardinal de Richelieu", i: "L'Architecte de l'Absolutisme", c: "Principal ministre de Louis XIII, il a passé 18 ans à briser l'influence des grands nobles et à affaiblir les protestants politiquement. Son but était de rendre le Roi tout-puissant à l'intérieur et la France redoutée à l'extérieur. Il a fondé l'Académie française et renforcé l'unité nationale." },
+        "fronde": { t: "La Fronde (1648-1653)", i: "Une Guerre Civile Traumatisante", c: "Une période de troubles majeurs durant l'enfance de Louis XIV. Les juges (Parlement) puis les grands Princes se révoltent contre les impôts et l'autorité de Mazarin. Les campagnes autour de Paris sont le théâtre de pillages atroces par des mercenaires, provoquant des famines et une haine durable de la capitale chez les paysans." },
+        "louis14": { t: "Louis XIV (1643-1715)", i: "Le Roi-Soleil", c: "Plus long règne de l'histoire de France (72 ans). Il centralise tout à Versailles. Son règne est celui de la grandeur militaire et artistique (Molière, Lully, Le Nôtre). Mais les guerres incessantes de la fin de son règne et les catastrophes climatiques (Hiver 1709) ont durement frappé le peuple des campagnes." },
+        "hiver1709": { t: "Grand Hiver de 1709", i: "Le Calvaire Blanc", c: "Le 5 janvier 1709, une vague de froid polaire s'abat sur la France en quelques heures. Le sol gèle sur 1 mètre, les noyers éclatent, le vin gèle dans les verres à Versailles. On compte 600 000 morts de faim dans le royaume. Les Coquerel, laboureurs résilients, ont réussi à préserver leurs semences là où d'autres ont tout perdu." },
+        "revolution": { t: "Révolution Française (1789)", i: "La Chute de l'Ancien Régime", c: "Une bascule totale : abolition des privilèges lors de la nuit du 4 août, fin de la féodalité, et Déclaration des Droits de l'Homme. Pour la famille, cela signifie devenir pleinement propriétaire de ses terres sans redevances seigneuriales. Le paysan devient citoyen et participe à la vie politique locale." },
+        "napoleon1": { t: "Napoléon Ier (1804-1815)", i: "L'Aigle de l'Empire", c: "Général républicain devenu Empereur. Il réorganise la France : création du Code Civil, des Lycées, des Préfectures et de la Banque de France. Ses guerres mobilisent des millions d'hommes mais ses réformes structurelles restent le socle de la France moderne." },
+        "cholera": { t: "Choléra de 1832", i: "La Peur Bleue", c: "Pandémie venue d'Asie, elle tue 19 000 personnes à Paris en quelques mois. Elle frappe aveuglément les taudis comme les palais (le Premier ministre en meurt). Cette crise déclenche une prise de conscience sur l'hygiène et force la ville à construire des égouts et à assainir l'eau potable." },
+        "trente": { t: "Trente Glorieuses (1945-1975)", i: "Le Miracle Économique", c: "Période de croissance exceptionnelle après la Seconde Guerre mondiale. C'est l'époque du plein emploi, du baby-boom, de la généralisation de l'automobile et de la télévision. C'est aussi la fin de la société paysanne traditionnelle au profit d'une France urbaine de services." },
+        "internet": { t: "Révolution Numérique", i: "Le Village Global", c: "Démocratisation mondiale de l'information et du Web dès les années 1990. Elle transforme radicalement le travail et permet aujourd'hui aux descendants de retrouver leurs racines par des outils technologiques que les ancêtres n'auraient pu imaginer." }
     };
 
-    // --- LOGIQUE D'AFFICHAGE ---
+    // --- LOGIQUE ---
     function showPage(id, el) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
         document.getElementById(id).classList.add('active');
         el.classList.add('active');
         window.scrollTo(0,0);
-        document.getElementById('app-title').innerText = (id === 'ancetres') ? 'Saga Coquerel' : el.querySelector('span:last-child').innerText;
+        document.getElementById('app-title').innerText = el.querySelector('span:last-child').innerText;
+        if(id !== 'ancetres') closeDetail();
+    }
+
+    function openDetail(index) {
+        const g = generations[index];
+        document.getElementById('gen-list').style.display = 'none';
+        document.getElementById('gen-detail').style.display = 'block';
+        document.getElementById('detail-content').innerHTML = `
+            <div class="gen-card-full">
+                <span class="gen-badge">Génération ${g.gen}</span>
+                <div class="gen-name" style="font-size:1.6rem;">${g.name}</div>
+                <div class="gen-dates">${g.dates}</div>
+                <div class="info-box"><strong>Épouse :</strong> <span class="spouse">${g.spouse}</span></div>
+                <div class="sec-title">👑 Contexte & Règnes</div><div class="text-body">${g.contexte}</div>
+                <div class="sec-title">🚜 Place Sociale & Métier</div><div class="text-body">${g.social}</div>
+                ${g.defis ? `<div class="sec-title">⚠️ Défis majeurs</div><div class="text-body">${g.defis}</div>` : ''}
+                <div class="sec-title">🛠 Technologie & Vie</div><div class="text-body">${g.techno}</div>
+            </div>
+        `;
+        window.scrollTo(0,0);
+    }
+
+    function closeDetail() {
+        document.getElementById('gen-list').style.display = 'grid';
+        document.getElementById('gen-detail').style.display = 'none';
     }
 
     function goToGlos(key) {
-        showPage('glossaire', document.querySelectorAll('.nav-item')[2]);
+        showPage('glossaire', document.querySelectorAll('.nav-item')[3]);
         setTimeout(() => {
             const target = document.getElementById('bio-' + key);
             if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 150);
     }
 
-    // Injection Ancêtres
-    const ancetresDiv = document.getElementById('ancetres');
-    generations.forEach(g => {
-        ancetresDiv.innerHTML += `
-            <div class="gen-card">
-                <span class="gen-badge">Génération ${g.gen}</span>
-                <div class="gen-name">${g.name}</div>
-                <div class="gen-dates">${g.dates}</div>
-                
-                <div class="info-box">
-                    <div class="info-row"><span class="lbl">Épouse</span><span class="val spouse">${g.spouse}</span></div>
-                </div>
+    function openZoom(src) { document.getElementById('zoom-img').src = src; document.getElementById('zoom-modal').style.display = 'flex'; }
+    function closeZoom() { document.getElementById('zoom-modal').style.display = 'none'; }
 
-                <div class="sec-title">👑 Contexte & Règnes</div>
-                <div class="text-body">${g.contexte}</div>
-
-                <div class="sec-title">🚜 Place Sociale & Métier</div>
-                <div class="text-body">${g.social}</div>
-
-                ${g.defis ? `<div class="sec-title">⚠️ Défis majeurs</div><div class="text-body">${g.defis}</div>` : ''}
-                
-                <div class="sec-title">🛠 Technologie & Vie</div>
-                <div class="text-body">${g.techno}</div>
-            </div>
-        `;
+    // Init List
+    const genList = document.getElementById('gen-list');
+    generations.forEach((g, i) => {
+        genList.innerHTML += `<div class="gen-menu-card" onclick="openDetail(${i})"><span class="menu-badge">Gén. ${g.gen}</span><div class="menu-name">${g.name}</div><div class="menu-date">${g.dates}</div></div>`;
     });
 
-    // Injection Glossaire
+    // Init Glossaire
     const glosDiv = document.getElementById('glossaire-content');
     Object.keys(glossaire).forEach(key => {
         const item = glossaire[key];
-        glosDiv.innerHTML += `
-            <div class="glos-item" id="bio-${key}">
-                <b>${item.t}</b>
-                <i>${item.i}</i>
-                <p style="margin:0; line-height:1.5; color:#444;">${item.c}</p>
-            </div>
-        `;
+        glosDiv.innerHTML += `<div class="glos-item" id="bio-${key}"><b>${item.t}</b><i>${item.i}</i><p style="margin:0; line-height:1.5; color:#444;">${item.c}</p></div>`;
     });
 
-    // Injection Frise
-    const timeline = [
-        ["1600", "I. Pierre établi", "Henri IV : Paix"], ["1618", "II. Pierre", "Guerre de 30 Ans"], ["1652", "IV. Jacques", "Fronde"], ["1709", "Jacques", "Grand Hiver"], ["1789", "VIII. Pierre H.C.", "Bastille"], ["1832", "VII. Pierre", "Choléra"], ["1870", "IX. Michel", "Siège Paris"], ["1912", "XII. Louis Alfred", "Titanic"], ["1948", "XIII. Alain", "Baby Boom"], ["1982", "XIV. Arnaud", "Internet"], ["2019", "XV. Arthur", "Trou Noir"]
-    ];
+    // Init Frise
+    const timelineData = [["1600", "I. Pierre", "Henri IV"], ["1618", "II. Pierre", "Guerre 30 Ans"], ["1652", "IV. Jacques", "Fronde"], ["1709", "Jacques", "Grand Hiver"], ["1789", "VIII. Pierre", "Bastille"], ["1870", "IX. Michel", "Siège Paris"], ["1912", "XII. Louis Alfred", "Titanic"], ["1982", "XIV. Arnaud", "Internet"], ["2019", "XV. Arthur", "Trou Noir"]];
     const timelineBody = document.getElementById('timeline-body');
-    timeline.forEach(t => {
-        timelineBody.innerHTML += `<tr><td class="col-year">${t[0]}</td><td>${t[1]}</td><td>${t[2]}</td></tr>`;
-    });
+    timelineData.forEach(t => { timelineBody.innerHTML += `<tr><td style="padding:10px;"><b>${t[0]}</b></td><td style="padding:10px;">${t[1]}</td><td style="padding:10px;">${t[2]}</td></tr>`; });
 
-    // Registration du Service Worker (Mode Offline)
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js').then(registration => {
-                console.log('Service Worker enregistré avec succès:', registration.scope);
-            }, err => {
-                console.log('Échec de l\'enregistrement du Service Worker:', err);
-            });
-        });
-    }
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
 </script>
 
 </body>
