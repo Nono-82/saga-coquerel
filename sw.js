@@ -1,4 +1,4 @@
-const CACHE_NAME = 'coquerel-v38-fixes';
+const CACHE_NAME = 'coquerel-v39-children';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

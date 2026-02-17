@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Saga Coquerel - V38</title>
+    <title>Saga Coquerel - V39</title>
     
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon.png">
@@ -265,23 +265,143 @@
         }
     ];
 
-    // --- 2. DONNÉES HISTOIRE (INTOUCHÉES) ---
+    // --- 2. DONNÉES HISTOIRE (AVEC AJOUT DES ENFANTS) ---
     const generations = [
-        { gen: "I", name: "Pierre COQUEREL (l'Ancien)", dates: "Naissance v. 1575 | Décès v. 1630 (v. 55 ans)", spouse: "Marie GORAN", contexte: `Il naît durant les <span class="glos-link" onclick="goToGlos('religion')">Guerres de Religion</span>. Il voit la paix revenir avec <span class="glos-link" onclick="goToGlos('henri4')">Henri IV</span> et l'<span class="glos-link" onclick="goToGlos('nantes')">Édit de Nantes</span>.`, social: `Il est <strong>Laboureur</strong>, signifiant qu'il appartient à l'aristocratie paysanne possédant train de culture et bêtes de trait.`, techno: `L'agriculture est manuelle et pénible. Le village d'Aubervilliers est alors un lieu de pèlerinage célèbre.` },
-        { gen: "II", name: "Pierre COQUEREL", dates: "Naissance 1618 | Décès 13 mai 1653 (35 ans)", spouse: "Marie MAHEUT (Décès 1654)", contexte: `Époque de <span class="glos-link" onclick="goToGlos('richelieu')">Richelieu</span>. Il subit les pillages de <span class="glos-link" onclick="goToGlos('fronde')">La Fronde</span>, guerre civile violente.`, social: `Les récoltes sont régulièrement réquisitionnées par les armées assiégeant Paris.`, defis: `Survivre aux mercenaires de passage et maintenir l'exploitation malgré le chaos.` },
-        { gen: "III", name: "Christophe COQUEREL", dates: "Naissance 1624 | Décès 13 mai 1657 (33 ans)", spouse: "Jeanne LEBOUT (1622 - 1670)", contexte: `Jeunesse de <span class="glos-link" onclick="goToGlos('louis14')">Louis XIV</span>.`, defis: `Il meurt à 32 ans, laissant sa veuve Jeanne diriger seule la ferme Coquerel. C'est un défi majeur pour l'époque.`, techno: `Le travail physique est exténuant, l'hygiène reste précaire.` },
-        { gen: "IV", name: "Jacques COQUEREL", dates: "Naissance 14 jan. 1652 | Décès 27 juin 1720 (68 ans)", spouse: "Catherine LEBOUT", contexte: `Il survit au terrible <span class="glos-link" onclick="goToGlos('hiver1709')">Grand Hiver de 1709</span>.`, social: `Notable rural d'Aubervilliers, unissant les plus puissantes lignées de cultivateurs locaux.`, techno: `Mise en réserve des semences pour parer à la famine effroyable de 1710.` },
-        { gen: "V", name: "Claude COQUEREL", dates: "Naissance 20 avr. 1696 | Décès 15 déc. 1763 (67 ans)", spouse: "Marguerite BOULAN (Décès 1773)", contexte: `Règne de Louis XV. Époque des <span class="glos-link" onclick="goToGlos('lumieres')">Lumières</span>.`, social: `Virage vers le <strong>maraîchage intensif</strong> pour nourrir un Paris en pleine explosion démographique.`, techno: `Amélioration des techniques de fumure (engrais urbains de Paris).` },
-        { gen: "VI", name: "Pierre COQUEREL", dates: "Naissance 15 jan. 1730 | Décès 04 avr. 1816 (86 ans)", spouse: "Marie Louise MALO (1723-1802)", contexte: `Témoin direct de la <span class="glos-link" onclick="goToGlos('revolution')">Révolution Française</span>.`, defis: `Il traverse la Terreur et l'Empire de <span class="glos-link" onclick="goToGlos('napoleon1')">Napoléon Ier</span>.`, social: `Passage du statut de Sujet de Sa Majesté à celui de Citoyen propriétaire moderne.` },
-        { gen: "VII", name: "Pierre COQUEREL", dates: "Naissance 15 mai 1761 | Décès 11 oct. 1852 (91 ans)", spouse: "Marie TROUET (1765-1836)", contexte: `Survit au <span class="glos-link" onclick="goToGlos('cholera')">Choléra de 1832</span> (19 000 morts à Paris).`, social: `Il voit le <span class="glos-link" onclick="goToGlos('canal')">Canal Saint-Denis</span> s'ouvrir en 1821 sur ses terres.`, techno: `Début de l'industrialisation massive qui grignote les champs d'Aubervilliers.` },
-        { gen: "VIII", name: "Pierre Honoré C. COQUEREL", dates: "Naissance 13 jan. 1789 | Décès 05 sept. 1851 (62 ans)", spouse: "Marie BOUDIER (1795-1875)", contexte: `Règne de Louis-Philippe. Arrivée révolutionnaire du chemin de fer en 1842.`, social: `Devient un <strong>Maître Maraîcher</strong> hautement qualifié pour concurrencer les légumes du Midi.`, techno: `Adoption des cultures forcées sous cloches de verre et châssis.` },
-        { gen: "IX", name: "Michel Lazare COQUEREL", dates: "Naissance 28 août 1815 | Décès 14 mai 1885 (70 ans)", spouse: "Marie Louise DEMARS", contexte: `Second Empire et transformation de Paris par <span class="glos-link" onclick="goToGlos('haussmann')">Haussmann</span>.`, defis: `<strong>Héros du Siège de 1870</strong> : il cultive sous les bombes prussiennes pour nourrir Paris affamé.`, techno: `Résistance civile par l'agriculture maraîchère de survie.` },
-        { gen: "X", name: "Pierre Honoré COQUEREL", dates: "Naissance 03 oct. 1842 | Décès 10 jan. 1912 (70 ans)", spouse: "Constance BONNEAU", contexte: `Belle Époque. Invasion des usines chimiques polluantes.`, social: `La terre agricole disparaît définitivement sous le béton industriel d'Aubervilliers.`, techno: `Arrivée du gaz de ville et de l'électricité dans les foyers.` },
-        { gen: "XI", name: "Louis Laurent COQUEREL", dates: "Naissance 10 juin 1880 | Décès 25 avr. 1964 (84 ans)", spouse: "Marie Louise LEMOINE (1887-1976)", contexte: `Traverse l'enfer de la <span class="glos-link" onclick="goToGlos('ww1')">Guerre de 1914-1918</span> et l'Occupation.`, social: `<strong>Dernier cultivateur</strong> de la lignée. Il voit la fin des chevaux de labour.`, techno: `Remplacement de la force animale par les premiers tracteurs agricoles.` },
-        { gen: "XII", name: "Louis Alfred COQUEREL", dates: "Naissance 12 oct. 1912 | Décès 18 avr. 2002 (90 ans) | Mariage 08/08/1942", spouse: "Simone SELLIER (1914-2000)", contexte: `Témoin des <span class="glos-link" onclick="goToGlos('trente')">Trente Glorieuses</span>.`, social: `Citoyen moderne, ouvrier et employé. Le lien professionnel avec la terre est rompu.`, techno: `L'ère de l'automobile, de la télévision et des loisirs de masse.` },
-        { gen: "XIII", name: "Alain Robert COQUEREL", dates: "Naissance 03/03/1948", spouse: "Micheline GUILLEMIN", contexte: `Enfant du Baby Boom et de Mai 68.`, defis: `Gardien de la mémoire. Il compile les archives pour les générations futures.`, social: `Société de services et ère de l'informatique grand public.` },
-        { gen: "XIV", name: "Arnaud COQUEREL", dates: "Naissance 15/11/1982 | Mariage 09/05/2015", spouse: "Isabelle PASCULLI (13/12/1980)", contexte: `Révolution numérique d'<span class="glos-link" onclick="goToGlos('internet')">Internet</span>.`, defis: `Transmission du flambeau ancestral à Manon et Arthur dans un monde globalisé.`, techno: `Intelligence Artificielle et défis climatiques du XXIe siècle.` },
-        { gen: "XV", name: "Manon (2016) & Arthur (2019)", dates: "Avenir", spouse: "L'Avenir", contexte: `Héritiers directs de 15 générations d'histoire ininterrompue.`, defis: `Écrire le prochain chapitre de la Saga Coquerel.`, techno: `Digital Natives (Génération Alpha).` }
+        { 
+            gen: "I", name: "Pierre COQUEREL (l'Ancien)", 
+            dates: "Naissance v. 1575 | Décès v. 1630 (v. 55 ans)", 
+            spouse: "Marie GORAN", 
+            [cite_start]children: "Pierre (Gén. II) [cite: 312]",
+            contexte: `Il naît durant les <span class="glos-link" onclick="goToGlos('religion')">Guerres de Religion</span>. Il voit la paix revenir avec <span class="glos-link" onclick="goToGlos('henri4')">Henri IV</span> et l'<span class="glos-link" onclick="goToGlos('nantes')">Édit de Nantes</span>.`, 
+            social: `Il est <strong>Laboureur</strong>, signifiant qu'il appartient à l'aristocratie paysanne possédant train de culture et bêtes de trait.`, 
+            techno: `L'agriculture est manuelle et pénible. Le village d'Aubervilliers est alors un lieu de pèlerinage célèbre.` 
+        },
+        { 
+            gen: "II", name: "Pierre COQUEREL", 
+            dates: "Naissance 1618 | Décès 13 mai 1653 (35 ans)", 
+            spouse: "Marie MAHEUT (Décès 1654)", 
+            [cite_start]children: "Pierre (1618), Marie (1621), Christophe (1624), Jean (1627), Catherine (c. 1630) [cite: 319]",
+            contexte: `Époque de <span class="glos-link" onclick="goToGlos('richelieu')">Richelieu</span>. Il subit les pillages de <span class="glos-link" onclick="goToGlos('fronde')">La Fronde</span>, guerre civile violente.`, 
+            social: `Les récoltes sont régulièrement réquisitionnées par les armées assiégeant Paris.`, 
+            defis: `Survivre aux mercenaires de passage et maintenir l'exploitation malgré le chaos.` 
+        },
+        { 
+            gen: "III", name: "Christophe COQUEREL", 
+            dates: "Naissance 1624 | Décès 13 mai 1657 (33 ans)", 
+            spouse: "Jeanne LEBOUT (1622 - 1670)", 
+            [cite_start]children: "Jacques (Gén. IV) [cite: 325]",
+            contexte: `Jeunesse de <span class="glos-link" onclick="goToGlos('louis14')">Louis XIV</span>.`, 
+            defis: `Il meurt à 32 ans, laissant sa veuve Jeanne diriger seule la ferme Coquerel. C'est un défi majeur pour l'époque.`, 
+            techno: `Le travail physique est exténuant, l'hygiène reste précaire.` 
+        },
+        { 
+            gen: "IV", name: "Jacques COQUEREL", 
+            dates: "Naissance 14 jan. 1652 | Décès 27 juin 1720 (68 ans)", 
+            spouse: "Catherine LEBOUT", 
+            [cite_start]children: "Claude (Gén. V) [cite: 332]",
+            contexte: `Il survit au terrible <span class="glos-link" onclick="goToGlos('hiver1709')">Grand Hiver de 1709</span>.`, 
+            social: `Notable rural d'Aubervilliers, unissant les plus puissantes lignées de cultivateurs locaux.`, 
+            techno: `Mise en réserve des semences pour parer à la famine effroyable de 1710.` 
+        },
+        { 
+            gen: "V", name: "Claude COQUEREL", 
+            dates: "Naissance 20 avr. 1696 | Décès 15 déc. 1763 (67 ans)", 
+            spouse: "Marguerite BOULAN (Décès 1773)", 
+            [cite_start]children: "Pierre (Gén. VI) [cite: 342]",
+            contexte: `Règne de Louis XV. Époque des <span class="glos-link" onclick="goToGlos('lumieres')">Lumières</span>.`, 
+            social: `Virage vers le <strong>maraîchage intensif</strong> pour nourrir un Paris en pleine explosion démographique.`, 
+            techno: `Amélioration des techniques de fumure (engrais urbains de Paris).` 
+        },
+        { 
+            gen: "VI", name: "Pierre COQUEREL", 
+            dates: "Naissance 15 jan. 1730 | Décès 04 avr. 1816 (86 ans)", 
+            spouse: "Marie Louise MALO (1723-1802)", 
+            [cite_start]children: "Pierre (Gén. VII) [cite: 349]",
+            contexte: `Témoin direct de la <span class="glos-link" onclick="goToGlos('revolution')">Révolution Française</span>.`, 
+            defis: `Il traverse la Terreur et l'Empire de <span class="glos-link" onclick="goToGlos('napoleon1')">Napoléon Ier</span>.`, 
+            social: `Passage du statut de Sujet de Sa Majesté à celui de Citoyen propriétaire moderne.` 
+        },
+        { 
+            gen: "VII", name: "Pierre COQUEREL", 
+            dates: "Naissance 15 mai 1761 | Décès 11 oct. 1852 (91 ans)", 
+            spouse: "Marie TROUET (1765-1836)", 
+            [cite_start]children: "Pierre Honoré Claude (1789), Marie Louise (1792), Jean Pierre (1795), Nicolas (1803) [cite: 358]",
+            contexte: `Survit au <span class="glos-link" onclick="goToGlos('cholera')">Choléra de 1832</span> (19 000 morts à Paris).`, 
+            social: `Il voit le <span class="glos-link" onclick="goToGlos('canal')">Canal Saint-Denis</span> s'ouvrir en 1821 sur ses terres.`, 
+            techno: `Début de l'industrialisation massive qui grignote les champs d'Aubervilliers.` 
+        },
+        { 
+            gen: "VIII", name: "Pierre Honoré C. COQUEREL", 
+            dates: "Naissance 13 jan. 1789 | Décès 05 sept. 1851 (62 ans)", 
+            spouse: "Marie BOUDIER (1795-1875)", 
+            [cite_start]children: "Michel Lazare (1815), Pierre Honoré Claude (1815), Marie Catherine (1817), Honorine (1820), Félix (c. 1825) [cite: 364]",
+            contexte: `Règne de Louis-Philippe. Arrivée révolutionnaire du chemin de fer en 1842.`, 
+            social: `Devient un <strong>Maître Maraîcher</strong> hautement qualifié pour concurrencer les légumes du Midi.`, 
+            techno: `Adoption des cultures forcées sous cloches de verre et châssis.` 
+        },
+        { 
+            gen: "IX", name: "Michel Lazare COQUEREL", 
+            dates: "Naissance 28 août 1815 | Décès 14 mai 1885 (70 ans)", 
+            spouse: "Marie Louise DEMARS", 
+            [cite_start]children: "Pierre Honoré (1842), Michel Lazare (1858-1859), Marie Louise (1861) [cite: 371]",
+            contexte: `Second Empire et transformation de Paris par <span class="glos-link" onclick="goToGlos('haussmann')">Haussmann</span>.`, 
+            defis: `<strong>Héros du Siège de 1870</strong> : il cultive sous les bombes prussiennes pour nourrir Paris affamé.`, 
+            techno: `Résistance civile par l'agriculture maraîchère de survie.` 
+        },
+        { 
+            gen: "X", name: "Pierre Honoré COQUEREL", 
+            dates: "Naissance 03 oct. 1842 | Décès 10 jan. 1912 (70 ans)", 
+            spouse: "Constance BONNEAU", 
+            [cite_start]children: "Louis Laurent (1880) [cite: 379]",
+            contexte: `Belle Époque. Invasion des usines chimiques polluantes.`, 
+            social: `La terre agricole disparaît définitivement sous le béton industriel d'Aubervilliers.`, 
+            techno: `Arrivée du gaz de ville et de l'électricité dans les foyers.` 
+        },
+        { 
+            gen: "XI", name: "Louis Laurent COQUEREL", 
+            dates: "Naissance 10 juin 1880 | Décès 25 avr. 1964 (84 ans)", 
+            spouse: "Marie Louise LEMOINE (1887-1976)", 
+            [cite_start]children: "Louis Alfred (1912) [cite: 386]",
+            contexte: `Traverse l'enfer de la <span class="glos-link" onclick="goToGlos('ww1')">Guerre de 1914-1918</span> et l'Occupation.`, 
+            social: `<strong>Dernier cultivateur</strong> de la lignée. Il voit la fin des chevaux de labour.`, 
+            techno: `Remplacement de la force animale par les premiers tracteurs agricoles.` 
+        },
+        { 
+            gen: "XII", name: "Louis Alfred COQUEREL", 
+            dates: "Naissance 12 oct. 1912 | Décès 18 avr. 2002 (90 ans) | Mariage 08/08/1942", 
+            spouse: "Simone SELLIER (1914-2000)", 
+            [cite_start]children: "Alain Robert (1948), Jean Louis (1944-2025) [cite: 392]",
+            contexte: `Témoin des <span class="glos-link" onclick="goToGlos('trente')">Trente Glorieuses</span>.`, 
+            social: `Citoyen moderne, ouvrier et employé. Le lien professionnel avec la terre est rompu.`, 
+            techno: `L'ère de l'automobile, de la télévision et des loisirs de masse.` 
+        },
+        { 
+            gen: "XIII", name: "Alain Robert COQUEREL", 
+            dates: "Naissance 03/03/1948", 
+            spouse: "Micheline GUILLEMIN", 
+            children: "Arnaud (1982) (Déduit de la Gén. XIV)",
+            contexte: `Enfant du Baby Boom et de Mai 68.`, 
+            defis: `Gardien de la mémoire. Il compile les archives pour les générations futures.`, 
+            social: `Société de services et ère de l'informatique grand public.` 
+        },
+        { 
+            gen: "XIV", name: "Arnaud COQUEREL", 
+            dates: "Naissance 15/11/1982 | Mariage 09/05/2015", 
+            spouse: "Isabelle PASCULLI (13/12/1980)", 
+            children: "Manon (2016), Arthur (2019) (Déduit de la Gén. XV)",
+            contexte: `Révolution numérique d'<span class="glos-link" onclick="goToGlos('internet')">Internet</span>.`, 
+            defis: `Transmission du flambeau ancestral à Manon et Arthur dans un monde globalisé.`, 
+            techno: `Intelligence Artificielle et défis climatiques du XXIe siècle.` 
+        },
+        { 
+            gen: "XV", name: "Manon (2016) & Arthur (2019)", 
+            dates: "Avenir", 
+            spouse: "L'Avenir", 
+            children: "Les héritiers de demain",
+            contexte: `Héritiers directs de 15 générations d'histoire ininterrompue.`, 
+            defis: `Écrire le prochain chapitre de la Saga Coquerel.`, 
+            techno: `Digital Natives (Génération Alpha).` 
+        }
     ];
 
     // --- 3. GLOSSAIRE (INTOUCHÉ) ---
@@ -336,6 +456,7 @@
             html += `<span class="vignette-badge">Gén. ${item.gen}</span><h2>${item.name}</h2>
                      <div class="sec-title">Dates (Naissance | Décès | Âge)</div><p>${item.dates}</p>
                      <div class="sec-title">Épouse</div><p style="color:#C2185B; font-weight:bold;">${item.spouse}</p>
+                     <div class="sec-title">Enfants</div><p style="color:#2E7D32;">${item.children}</p>
                      <div class="sec-title">👑 Contexte & Règnes</div><div class="text-body">${item.contexte}</div>
                      <div class="sec-title">🚜 Place Sociale & Métier</div><div class="text-body">${item.social}</div>
                      ${item.defis ? `<div class="sec-title">⚠️ Défis majeurs</div><div class="text-body">${item.defis}</div>` : ''}
@@ -354,19 +475,15 @@
     }
 
     function goToGlos(key) {
-        // 1. Activer l'onglet Glossaire (index 4)
         showPage('glossaire', document.querySelectorAll('.nav-item')[4]);
-        
-        // 2. Attendre que l'onglet soit visible et rendu
         setTimeout(() => {
             const target = document.getElementById('bio-' + key);
             if(target) {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // Petit effet visuel pour repérer l'item
                 target.style.backgroundColor = '#fffbeb';
                 setTimeout(() => target.style.backgroundColor = 'white', 1000);
             }
-        }, 300); // Délai augmenté à 300ms pour garantir le rendu sur mobile
+        }, 300);
     }
 
     function openZoom(src) { document.getElementById('zoom-img').src = src; document.getElementById('zoom-modal').style.display = 'flex'; }
@@ -383,7 +500,6 @@
         const glosDiv = document.getElementById('glossaire-content');
         Object.keys(glossaire).sort().forEach(key => { const item = glossaire[key]; glosDiv.innerHTML += `<div class="glos-item" id="bio-${key}"><b>${item.t}</b><i>${item.i}</i><p>${item.c}</p></div>`; });
 
-        // MISE À JOUR DU TABLEAU FRISE SELON LE PDF
         const timelineBody = document.getElementById('timeline-body');
         const timelineData = [
             ["v. 1600", "Pierre l'Ancien (Gén. I)", "Henri IV règne sur la France et consolide la paix avec l'Édit de Nantes."],
