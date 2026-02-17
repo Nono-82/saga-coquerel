@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Saga Coquerel - V34</title>
+    <title>Saga Coquerel - V35</title>
     
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon.png">
@@ -19,6 +19,7 @@
         header { background: var(--primary); color: white; padding: 20px 15px; text-align: center; border-bottom: 4px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
         h1 { margin: 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
 
+        /* NAVIGATION BASSE */
         nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; border-top: 1px solid #ddd; box-shadow: 0 -2px 15px rgba(0,0,0,0.1); z-index: 1000; padding-bottom: env(safe-area-inset-bottom); }
         .nav-item { flex: 1; text-align: center; padding: 10px 0; font-size: 0.55rem; color: #888; text-decoration: none; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .nav-item.active { color: var(--gold); font-weight: bold; }
@@ -28,11 +29,13 @@
         .page { display: none; animation: fadeIn 0.3s ease; }
         .page.active { display: block; }
 
+        /* GRILLES */
         .grid-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .vignette { background: white; border-radius: 12px; padding: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--primary); cursor: pointer; display: flex; flex-direction: column; justify-content: center; min-height: 70px; }
+        .vignette { background: white; border-radius: 12px; padding: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--primary); cursor: pointer; display: flex; flex-direction: column; justify-content: center; min-height: 80px; }
         .vignette-title { font-size: 0.8rem; font-weight: bold; color: var(--primary); line-height: 1.2; }
         .vignette-badge { font-size: 0.55rem; text-transform: uppercase; color: var(--gold); font-weight: bold; margin-bottom: 4px; }
 
+        /* VUES DÉTAILS */
         .detail-view { display: none; }
         .back-btn { background: var(--primary); color: white; border: none; padding: 10px 18px; border-radius: 25px; font-size: 0.8rem; margin-bottom: 15px; cursor: pointer; }
         .content-card { background: var(--card); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-left: 6px solid var(--primary); padding: 20px; }
@@ -40,17 +43,17 @@
         .sec-title { color: var(--gold); font-size: 0.85rem; font-weight: bold; margin-top: 20px; border-bottom: 1px solid #eee; text-transform: uppercase; padding-bottom: 3px; }
         .text-body { font-size: 0.95rem; line-height: 1.6; text-align: justify; margin-top: 8px; color: #333; }
 
+        /* GLOSSAIRE GRANDE TAILLE */
         .glos-link { color: var(--gold); font-weight: bold; text-decoration: none; border-bottom: 1px dotted var(--gold); cursor: pointer; }
         .glos-item { background: white; padding: 22px; border-radius: 12px; margin-bottom: 18px; border-left: 5px solid var(--gold); box-shadow: 0 2px 10px rgba(0,0,0,0.06); scroll-margin-top: 100px; }
         .glos-item b { display: block; color: var(--primary); font-size: 1.15rem; margin-bottom: 5px; }
         .glos-item i { color: var(--gold); font-size: 0.85rem; display: block; margin-bottom: 12px; font-style: italic; }
         .glos-item p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: #333; }
 
+        /* LE NOM */
         .ety-card { background: white; padding: 20px; border-radius: 12px; border-bottom: 4px solid var(--gold); margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .stat-box { background: #f9f6f2; padding: 12px; border-radius: 8px; text-align: center; border: 1px solid #eee; margin-top: 10px; }
-        .stat-val { display: block; font-size: 1.1rem; font-weight: bold; color: var(--gold); }
-        .stat-lbl { font-size: 0.6rem; text-transform: uppercase; color: #888; }
 
+        /* FRISE & IMAGES */
         .frise-img { width: 100%; border-radius: 8px; border: 2px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px; cursor: zoom-in; }
         #zoom-modal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
         #zoom-modal img { max-width: 95%; max-height: 95%; }
@@ -83,7 +86,7 @@
     </div>
 
     <div id="frise" class="page">
-        <h2 style="color:var(--primary); text-align:center; font-size:1rem;">Archives & Chronologie</h2>
+        <h2 style="color:var(--primary); text-align:center; font-size:1rem;">Archives & Documents</h2>
         <img src="image1.jpg" class="frise-img" onclick="openZoom(this.src)">
         <img src="image2.jpg" class="frise-img" onclick="openZoom(this.src)">
         <div style="overflow-x:auto; margin-top:20px;">
@@ -97,17 +100,13 @@
         <div class="ety-card">
             <h2 style="color:var(--primary); margin-top:0; font-size:1.2rem;">Étymologie & Signification</h2>
             <p class="text-body">Le patronyme <strong>COQUEREL</strong> est une formation onomastique typique du vieux français médiéval, issue du radical <em>Coq</em> (du bas-latin <em>coccus</em>) complété par le suffixe diminutif et affectif <em>-erel</em>.</p>
-            [cite_start]<p class="text-body"><strong>Le "Petit Coq" :</strong> Au XIIe siècle, ce nom servait de surnom pour désigner un homme caractérisé par sa vivacité, sa fierté ou son tempérament combatif. C'est un nom de caractère qui évoque la vaillance paysanne. [cite: 31]</p>
-            <p class="text-body"><strong>Lien avec la Coquerelle :</strong> Dans certaines provinces, la "coquerelle" désignait également la plante <em>Physalis</em> (Amour-en-cage), reconnaissable à son fruit rouge protégé par une membrane évoquant la crête du gallinacée.</p>
+            <p class="text-body"><strong>Le "Petit Coq" :</strong> Au XIIe siècle, ce nom servait de surnom pour désigner un homme vif, fier ou combatif. C'est un nom de caractère qui évoque la vaillance.</p>
+            <p class="text-body"><strong>Lien végétal :</strong> Dans certaines provinces, la "coquerelle" désignait également la plante <em>Physalis</em> (Amour-en-cage), reconnaissable à son fruit rouge rappelant la crête d'un coq.</p>
         </div>
         <div class="ety-card">
-            <h2 style="color:var(--primary); font-size:1.1rem;">Ancrage Régional</h2>
-            [cite_start]<p class="text-body">Le nom est un marqueur fort du <strong>Nord-Ouest de la France</strong>, particulièrement en Normandie (Seine-Maritime, Eure) et en Picardie (Somme). [cite: 9, 33]</p>
-            <div class="stat-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-                <div class="stat-box"><span class="stat-val">76 / 27</span><span class="stat-lbl">Normandie (Berceau)</span></div>
-                <div class="stat-box"><span class="stat-val">80</span><span class="stat-lbl">Somme (Implantation)</span></div>
-            </div>
-            <p class="text-body" style="font-size:0.85rem; font-style:italic; margin-top:10px;">Statistiques : On estime à environ 2 850 le nombre de porteurs du nom en France aujourd'hui.</p>
+            <h2 style="color:var(--primary); font-size:1.1rem;">Répartition & Statistiques</h2>
+            <p class="text-body">Le nom est ancré dans le <strong>Nord-Ouest de la France</strong>, entre la Normandie (Seine-Maritime, Eure) et la Picardie (Somme).</p>
+            <p class="text-body" style="font-size:0.85rem; font-style:italic;">Statistiques : On estime à environ 2 850 le nombre de porteurs du nom en France.</p>
         </div>
     </div>
 
@@ -140,115 +139,180 @@
 </nav>
 
 <script>
-    // --- 1. DONNÉES ORIGINES (PDF SYNTHÈSE) ---
+    // --- 1. DONNÉES ORIGINES (PDF) ---
     const origines = [
         {
             title: "L'Héritage Viking et l'Émergence en Normandie (Xe - XIe siècles)",
             badge: "Fondations",
             content: `
-                [cite_start]<p class="text-body">Tout commence par un métissage profond entre les envahisseurs scandinaves et les populations locales. [cite: 3]</p>
+                <p class="text-body">Tout commence par un métissage profond entre les envahisseurs scandinaves et les populations locales.</p>
                 <div class="sec-title">911 : Traité de Saint-Clair-sur-Epte</div>
-                <p class="text-body">Le chef viking <span class="glos-link" onclick="goToGlos('rollon')">Rollon</span> reçoit la Normandie. [cite_start]Les ancêtres des Coquerel s'installent dans ce "creuset" normand. [cite: 5]</p>
+                <p class="text-body">Le chef viking <span class="glos-link" onclick="goToGlos('rollon')">Rollon</span> reçoit la Normandie. Les ancêtres des Coquerel s'installent dans ce "creuset" normand.</p>
                 <div class="sec-title">Le Métissage</div>
-                [cite_start]<p class="text-body">Bien que le nom Coquerel soit d'origine romane (du bas-latin coccus pour "coq"), la lignée est biologiquement liée aux Vikings par des mariages avec les femmes locales gallo-franques. [cite: 6] [cite_start]En deux générations, ils adoptent la langue française et la religion chrétienne tout en gardant le tempérament guerrier nordique. [cite: 7, 8]</p>
-                <div class="sec-title">Le Berceau</div>
-                [cite_start]<p class="text-body">La famille s'implante solidement dans la Haute-Normandie, particulièrement dans le Pays de Caux (Seine-Maritime) et près de Lisieux (Calvados). [cite: 9]</p>
+                <p class="text-body">Bien que le nom Coquerel soit d'origine romane, la lignée est biologiquement liée aux Vikings. En deux générations, ils adoptent la langue française et la religion chrétienne.</p>
             `
         },
         {
             title: "La Conquête de l'Angleterre et l'Installation (1066 - 1086)",
             badge: "L'Expansion",
             content: `
-                [cite_start]<p class="text-body">La famille participe activement à l'un des événements les plus marquants de l'histoire européenne. [cite: 11]</p>
                 <div class="sec-title">1066 : Bataille d'Hastings</div>
-                [cite_start]<p class="text-body">Des membres de la famille rejoignent l'armée de <span class="glos-link" onclick="goToGlos('guillaume')">Guillaume le Conquérant</span>. [cite: 12] [cite_start]Ils font partie de la petite noblesse chevaleresque. [cite: 13]</p>
+                <p class="text-body">Des membres de la famille rejoignent l'armée de <span class="glos-link" onclick="goToGlos('guillaume')">Guillaume le Conquérant</span>.</p>
                 <div class="sec-title">1086 : Le Domesday Book</div>
-                [cite_start]<p class="text-body">La preuve historique de leur succès est gravée dans ce grand recensement. [cite: 13] [cite_start]Un certain Walter Cockerel (ou Gualterius) est enregistré comme propriétaire terrien. [cite: 14]</p>
-                <div class="sec-title">Les Fiefs Anglais</div>
-                [cite_start]<p class="text-body">La famille reçoit des terres dans le Gloucestershire, notamment à Icomb et Sezincote, en récompense de leur fidélité au nouveau roi Guillaume Ier. [cite: 15]</p>
+                <p class="text-body">Un certain Walter Cockerel (ou Gualterius) est enregistré comme propriétaire terrien dans le Gloucestershire.</p>
             `
         },
         {
             title: "L'Évolution du Nom : De la Normandie à l'Angleterre",
             badge: "Linguistique",
-            content: `
-                [cite_start]<p class="text-body">Le passage de la Manche entraîne une transformation linguistique du patronyme : [cite: 17]</p>
-                <div class="sec-title">Coquerel (France)</div>
-                <p class="text-body">Diminutif de "coq", désignant un individu fier ou combatif. [cite_start]L'orthographe reste stable en Normandie. [cite: 18]</p>
-                <div class="sec-title">Cockerell / Cockerill (Angleterre)</div>
-                [cite_start]<p class="text-body">Sous l'influence des scribes anglais et de la prononciation locale, le "qu" dur devient "ck" et le suffixe est anglicisé. [cite: 19] [cite_start]La famille s'intègre à l'élite anglo-normande et finit par se fondre dans la population anglaise tout en gardant son nom. [cite: 20]</p>
-            `
+            content: `<p class="text-body">Le passage de la Manche entraîne la transformation en Cockerell ou Cockerill. L'orthographe reste stable en France.</p>`
         },
         {
             title: "Les Lieux Emblématiques (Traces de Pierre)",
             badge: "Patrimoine",
-            content: `
-                [cite_start]<p class="text-body">La famille a laissé des empreintes durables dans le paysage normand : [cite: 22]</p>
-                <div class="sec-title">Le Manoir de Coquerel (Milly, Manche)</div>
-                [cite_start]<p class="text-body">Siège d'une ancienne seigneurie et berceau d'une branche importante (aujourd'hui célèbre pour sa distillerie de Calvados). [cite: 23]</p>
-                <div class="sec-title">Le Domaine de Coqueréaumont (Seine-Maritime)</div>
-                [cite_start]<p class="text-body">Situé dans le Pays de Caux, témoignant de l'implantation originelle de la famille dans cette zone de forte influence viking. [cite: 24]</p>
-                <div class="sec-title">Héraldique</div>
-                [cite_start]<p class="text-body">Le Blason : "D'azur, à trois coqs d'or, crêtés, barbés et membrés de gueules" (Trois coqs dorés sur fond bleu). [cite: 26]</p>
-            `
+            content: `<p class="text-body">Le Manoir de Coquerel (Milly, Manche) et le Domaine de Coqueréaumont (Seine-Maritime) sont les berceaux de la lignée.</p>`
         },
         {
             title: "Sources Documentaires Utilisées",
             badge: "Archives",
-            content: `
-                <ul class="text-body">
-                    [cite_start]<li><strong>Domesday Book (1086) :</strong> Registre officiel listant Walter Cockerell dans le Gloucestershire. [cite: 28]</li>
-                    [cite_start]<li><strong>A Dictionary of English Surnames :</strong> Étude sur la transition phonétique des noms normands vers l'anglais. [cite: 29]</li>
-                    [cite_start]<li><strong>Patronymica Britannica :</strong> Dictionnaire retraçant l'origine normande et la symbolique du nom. [cite: 31]</li>
-                    [cite_start]<li><strong>The Battle Abbey Roll :</strong> Liste historique des compagnons de Guillaume le Conquérant. [cite: 32]</li>
-                    [cite_start]<li><strong>Archives de Seine-Maritime :</strong> Registres attestant de la présence de la famille dans le Pays de Caux. [cite: 33]</li>
-                </ul>
-            `
+            content: `<p class="text-body">Domesday Book (1086), A Dictionary of English Surnames, Patronymica Britannica.</p>`
         }
     ];
 
-    // --- 2. DONNÉES HISTOIRE (AVEC TOUTES LES DATES) ---
+    // --- 2. DONNÉES HISTOIRE (DATES COMPLÈTES) ---
     const generations = [
-        { gen: "I", name: "Pierre COQUEREL (l'Ancien)", dates: "Naissance v. 1575 | Décès v. 1630 (v. 55 ans)", spouse: "Marie GORAN", contexte: `Vivant sous <span class="glos-link" onclick="goToGlos('henri4')">Henri IV</span>.`, social: "Laboureur.", techno: "Agriculture manuelle." },
-        { gen: "II", name: "Pierre COQUEREL", dates: "Naissance 1618 | Décès 13 mai 1653 (35 ans)", spouse: "Marie MAHEUT (Décès 1654)", contexte: `Époque de <span class="glos-link" onclick="goToGlos('richelieu')">Richelieu</span> et <span class="glos-link" onclick="goToGlos('fronde')">La Fronde</span>.`, social: "Cultivateur.", defis: "Survie aux pillages." },
-        { gen: "III", name: "Christophe COQUEREL", dates: "Naissance 1624 | Décès 13 mai 1657 (33 ans)", spouse: "Jeanne LEBOUT (1622 - 1670)", contexte: `Jeunesse de <span class="glos-link" onclick="goToGlos('louis14')">Louis XIV</span>.`, defis: "Veuvage précoce.", social: "Maintien foncier." },
-        { gen: "IV", name: "Jacques COQUEREL", dates: "Naissance 14 jan. 1652 | Décès 27 juin 1720 (68 ans)", spouse: "Catherine LEBOUT", contexte: `Survit à l'<span class="glos-link" onclick="goToGlos('hiver1709')">Hiver 1709</span>.`, social: "Notable d'Aubervilliers.", techno: "Résilience climatique." },
-        { gen: "V", name: "Claude COQUEREL", dates: "Naissance 20 avr. 1696 | Décès 15 déc. 1763 (67 ans)", spouse: "Marguerite BOULAN (Décès 1773)", contexte: `Époque des <span class="glos-link" onclick="goToGlos('lumieres')">Lumières</span>.`, social: "Maraîcher.", techno: "Circuits courts." },
-        { gen: "VI", name: "Pierre COQUEREL", dates: "Naissance 15 jan. 1730 | Décès 04 avr. 1816 (86 ans)", spouse: "Marie Louise MALO (1723-1802)", contexte: `<span class="glos-link" onclick="goToGlos('revolution')">Révolution Française</span>.`, defis: `Terreur & Empire de <span class="glos-link" onclick="goToGlos('napoleon1')">Napoléon Ier</span>.`, social: "Citoyen propriétaire." },
-        { gen: "VII", name: "Pierre COQUEREL", dates: "Naissance 15 mai 1761 | Décès 11 oct. 1852 (91 ans)", spouse: "Marie TROUET (1765-1836)", contexte: `<span class="glos-link" onclick="goToGlos('cholera')">Choléra 1832</span>.`, social: `Ouverture du <span class="glos-link" onclick="goToGlos('canal')">Canal Saint-Denis</span>.`, techno: "Urbanisation rurale." },
-        { gen: "VIII", name: "Pierre Honoré C. COQUEREL", dates: "Naissance 13 jan. 1789 | Décès 05 sept. 1851 (62 ans)", spouse: "Marie BOUDIER (1795-1875)", contexte: "Louis-Philippe | Rail.", social: "Maître Maraîcher.", techno: "Cloches de verre." },
-        { gen: "IX", name: "Michel Lazare COQUEREL", dates: "Naissance 28 août 1815 | Décès 14 mai 1885 (70 ans)", spouse: "Marie Louise DEMARS", contexte: `Empire d'<span class="glos-link" onclick="goToGlos('haussmann')">Haussmann</span>.`, defis: "Siège 1870.", social: "Résistance agricole." },
-        { gen: "X", name: "Pierre Honoré COQUEREL", dates: "Naissance 03 oct. 1842 | Décès 10 jan. 1912 (70 ans)", spouse: "Constance BONNEAU", contexte: "Belle Époque.", social: "Pression industrielle.", techno: "Gaz & Électricité." },
-        { gen: "XI", name: "Louis Laurent COQUEREL", dates: "Naissance 10 juin 1880 | Décès 25 avr. 1964 (84 ans)", spouse: "Marie Louise LEMOINE (1887-1976)", contexte: `<span class="glos-link" onclick="goToGlos('ww1')">1914-1918</span> | <span class="glos-link" onclick="goToGlos('occupation')">Occupation</span>.`, social: "Dernier cultivateur.", techno: "Tracteurs." },
-        { gen: "XII", name: "Louis Alfred COQUEREL", dates: "Naissance 12 oct. 1912 | Décès 18 avr. 2002 (90 ans) | Mariage 08/08/1942", spouse: "Simone SELLIER (1914-2000)", contexte: `<span class="glos-link" onclick="goToGlos('trente')">Trente Glorieuses</span>.`, social: "Salariat moderne.", techno: "TV & Auto." },
-        { gen: "XIII", name: "Alain Robert COQUEREL", dates: "Naissance 03/03/1948", spouse: "Micheline GUILLEMIN", contexte: "Baby Boom.", social: "Archiviste familial.", techno: "Informatique." },
-        { gen: "XIV", name: "Arnaud COQUEREL", dates: "Naissance 15/11/1982 | Mariage 09/05/2015", spouse: "Isabelle PASCULLI (13/12/1980)", contexte: `<span class="glos-link" onclick="goToGlos('internet')">Internet</span>.`, defis: "Transmission.", techno: "IA." },
-        { gen: "XV", name: "Manon (11/06/2016) & Arthur (04/10/2019)", dates: "Avenir", spouse: "L'Avenir", contexte: "Génération Alpha.", defis: "Prochain chapitre.", techno: "Digital Native." }
+        { 
+            gen: "I", name: "Pierre COQUEREL (l'Ancien)", 
+            dates: "Naissance v. 1575 | Décès v. 1630 (v. 55 ans)", 
+            spouse: "Marie GORAN", 
+            contexte: `Vivant sous <span class="glos-link" onclick="goToGlos('henri4')">Henri IV</span>.`, 
+            social: "Laboureur.", 
+            techno: "Agriculture manuelle." 
+        },
+        { 
+            gen: "II", name: "Pierre COQUEREL", 
+            dates: "Naissance 1618 | Décès 13 mai 1653 (35 ans)", 
+            spouse: "Marie MAHEUT (Décès 1654)", 
+            contexte: `Époque de <span class="glos-link" onclick="goToGlos('richelieu')">Richelieu</span> et <span class="glos-link" onclick="goToGlos('fronde')">La Fronde</span>.`, 
+            social: "Cultivateur.", 
+            defis: "Survie aux pillages." 
+        },
+        { 
+            gen: "III", name: "Christophe COQUEREL", 
+            dates: "Naissance 1624 | Décès 13 mai 1657 (33 ans)", 
+            spouse: "Jeanne LEBOUT (1622 - 1670)", 
+            contexte: `Jeunesse de <span class="glos-link" onclick="goToGlos('louis14')">Louis XIV</span>.`, 
+            defis: "Veuvage précoce de Jeanne.", 
+            social: "Maintien foncier." 
+        },
+        { 
+            gen: "IV", name: "Jacques COQUEREL", 
+            dates: "Naissance 14 jan. 1652 | Décès 27 juin 1720 (68 ans)", 
+            spouse: "Catherine LEBOUT", 
+            contexte: `Survit à l'<span class="glos-link" onclick="goToGlos('hiver1709')">Hiver 1709</span>.`, 
+            social: "Notable d'Aubervilliers.", 
+            techno: "Résilience." 
+        },
+        { 
+            gen: "V", name: "Claude COQUEREL", 
+            dates: "Naissance 20 avr. 1696 | Décès 15 déc. 1763 (67 ans)", 
+            spouse: "Marguerite BOULAN (Décès 1773)", 
+            contexte: `Époque des <span class="glos-link" onclick="goToGlos('lumieres')">Lumières</span>.`, 
+            social: "Maraîcher.", 
+            techno: "Vente aux Halles." 
+        },
+        { 
+            gen: "VI", name: "Pierre COQUEREL", 
+            dates: "Naissance 15 jan. 1730 | Décès 04 avr. 1816 (86 ans)", 
+            spouse: "Marie Louise MALO (1723-1802)", 
+            contexte: `<span class="glos-link" onclick="goToGlos('revolution')">Révolution Française</span>.`, 
+            defis: `Terreur & Empire de <span class="glos-link" onclick="goToGlos('napoleon1')">Napoléon Ier</span>.`, 
+            social: "Citoyen propriétaire." 
+        },
+        { 
+            gen: "VII", name: "Pierre COQUEREL", 
+            dates: "Naissance 15 mai 1761 | Décès 11 oct. 1852 (91 ans)", 
+            spouse: "Marie TROUET (1765-1836)", 
+            contexte: `<span class="glos-link" onclick="goToGlos('cholera')">Choléra 1832</span>.`, 
+            social: `Ouverture du <span class="glos-link" onclick="goToGlos('canal')">Canal Saint-Denis</span>.`, 
+            techno: "Industrie." 
+        },
+        { 
+            gen: "VIII", name: "Pierre Honoré C. COQUEREL", 
+            dates: "Naissance 13 jan. 1789 | Décès 05 sept. 1851 (62 ans)", 
+            spouse: "Marie BOUDIER (1795-1875)", 
+            contexte: "Louis-Philippe | Rail.", 
+            social: "Maître Maraîcher.", 
+            techno: "Cloches de verre." 
+        },
+        { 
+            gen: "IX", name: "Michel Lazare COQUEREL", 
+            dates: "Naissance 28 août 1815 | Décès 14 mai 1885 (70 ans)", 
+            spouse: "Marie Louise DEMARS", 
+            contexte: `Empire d'<span class="glos-link" onclick="goToGlos('haussmann')">Haussmann</span>.`, 
+            defis: "Héros du Siège 1870.", 
+            social: "Résistance agricole." 
+        },
+        { 
+            gen: "X", name: "Pierre Honoré COQUEREL", 
+            dates: "Naissance 03 oct. 1842 | Décès 10 jan. 1912 (70 ans)", 
+            spouse: "Constance BONNEAU", 
+            contexte: "Belle Époque.", 
+            social: "Expansion industrielle.", 
+            techno: "Gaz & Électricité." 
+        },
+        { 
+            gen: "XI", name: "Louis Laurent COQUEREL", 
+            dates: "Naissance 10 juin 1880 | Décès 25 avr. 1964 (84 ans)", 
+            spouse: "Marie Louise LEMOINE (1887-1976)", 
+            contexte: `<span class="glos-link" onclick="goToGlos('ww1')">1914-1918</span> | <span class="glos-link" onclick="goToGlos('occupation')">Occupation</span>.`, 
+            social: "Dernier cultivateur.", 
+            techno: "Mécanisation." 
+        },
+        { 
+            gen: "XII", name: "Louis Alfred COQUEREL", 
+            dates: "Naissance 12 oct. 1912 | Décès 18 avr. 2002 (90 ans) | Mariage 08/08/1942", 
+            spouse: "Simone SELLIER (1914-2000)", 
+            contexte: `<span class="glos-link" onclick="goToGlos('trente')">Trente Glorieuses</span>.`, 
+            social: "Salariat moderne.", 
+            techno: "Consommation." 
+        },
+        { 
+            gen: "XIII", name: "Alain Robert COQUEREL", 
+            dates: "Naissance 03/03/1948", 
+            spouse: "Micheline GUILLEMIN", 
+            contexte: "Baby Boom.", 
+            social: "Gardien des archives.", 
+            techno: "Tertiaire." 
+        },
+        { 
+            gen: "XIV", name: "Arnaud COQUEREL", 
+            dates: "Naissance 15/11/1982 | Mariage 09/05/2015", 
+            spouse: "Isabelle PASCULLI (13/12/1980)", 
+            contexte: `<span class="glos-link" onclick="goToGlos('internet')">Internet</span>.`, 
+            defis: "Transmission.", 
+            techno: "IA." 
+        },
+        { 
+            gen: "XV", name: "Manon & Arthur", 
+            dates: "11/06/2016 (Manon) | 04/10/2019 (Arthur)", 
+            spouse: "L'Avenir", 
+            contexte: "Génération Alpha.", 
+            defis: "Futur.", 
+            techno: "Numérique." 
+        }
     ];
 
     // --- 3. GLOSSAIRE (GRANDE TAILLE V32) ---
     const glossaire = {
-        "religion": { t: "Guerres de Religion (1562-1598)", i: "Conflits civils confessionnels", c: "Série de huit conflits civils atroces opposant catholiques et protestants (huguenots) en France durant la seconde moitié du XVIe siècle. Marquées par des massacres célèbres comme celui de la Saint-Barthélemy, elles ont ravagé l'économie du pays et divisé les familles. Ces guerres cessent grâce à Henri IV, qui ramène l'ordre et la paix civile. Pour un laboureur comme Pierre l'Ancien, cette période signifiait l'insécurité permanente et le risque constant de voir ses terres pillées ou brûlées par l'un ou l'autre des camps rivaux." },
-        "henri4": { t: "Henri IV (1589-1610)", i: "Le Roi de la Pacification", c: "Surnommé le 'Bon Roi Henri', il est le premier souverain français de la branche des Bourbons. Pour mettre fin aux Guerres de Religion, il se convertit au catholicisme. Son règne marque le retour à la prospérité rurale avec son souhait que chaque paysan puisse mettre 'la poule au pot le dimanche'. Il favorise le développement des infrastructures et protège la classe paysanne. Il est assassiné en 1610 par Ravaillac, mais reste dans la mémoire collective comme le protecteur des laboureurs contre les excès de la noblesse." },
-        "nantes": { t: "Édit de Nantes (1598)", i: "Acte de tolérance inédit", c: "Acte de pacification signé par Henri IV qui accorde aux protestants français des droits de culte et civils. C'est un texte fondateur car il instaure une forme de tolérance religieuse alors que l'Europe est en proie aux fanatismes. Cet édit a permis de stabiliser les campagnes, d'arrêter les massacres de civils et de relancer l'économie agricole. Pour les Coquerel, cela marque le début d'un siècle de stabilité et de croissance foncière à Aubervilliers." },
-        "richelieu": { t: "Cardinal de Richelieu", i: "Bâtisseur de l'État moderne", c: "Principal ministre de Louis XIII, il a brisé les résistances intérieures au pouvoir royal. Sa vision était de rendre le Roi tout-puissant pour assurer la grandeur de la France. Sous son influence, l'administration devient plus forte et la France s'impose comme une puissance européenne majeure. Pour le peuple, cela s'est souvent traduit par une pression fiscale accrue pour financer les guerres contre l'Autriche et l'Espagne." },
-        "fronde": { t: "La Fronde (1648-1653)", i: "La Guerre Civile des Princes", c: "Une période de révoltes massives contre le pouvoir royal durant l'enfance de Louis XIV. Pour les habitants d'Aubervilliers, la Fronde fut une apocalypse. La ville fut occupée, pillée et brûlée par les armées de mercenaires qui assiégeaient la capitale. Les récoltes furent perdues, causant des famines locales atroces. Cet événement a durablement marqué la psychologie des laboureurs, renforçant leur méfiance envers les troubles de la capitale." },
-        "louis14": { t: "Louis XIV (1643-1715)", i: "Le Roi-Soleil", c: "Symbole de l'Absolutisme, il a régné 72 ans. Son règne est celui de la gloire culturelle mais aussi de guerres d'expansion incessantes. Pour le peuple paysan, les dernières années du règne furent marquées par une misère noire, des hivers apocalyptiques (1709) et des impôts écrasants. Les Coquerel ont vécu sous ce règne l'apogée de la monarchie mais aussi les défis de la survie face aux exigences d'un État guerrier." },
-        "hiver1709": { t: "Grand Hiver (1709)", i: "L'Apocalypse climatique", c: "En janvier 1709, une vague de froid polaire brutale s'abat sur la France. Le gel est si profond que les céréales meurent, les arbres éclatent de froid et le vin gèle dans les carafes. La famine qui s'ensuit tue environ 600 000 personnes. Pour Jacques Coquerel, survivre à cet hiver sans perdre ses terres fut un exploit de résilience, nécessitant de puiser dans des réserves de semences cachées pour relancer la vie au printemps." },
-        "lumieres": { t: "Les Lumières (XVIIIe siècle)", i: "L'essor de la Raison", c: "Mouvement intellectuel prônant la science, la raison et la liberté. Ce vent de progrès influence l'agriculture : on cherche de meilleurs rendements et on modernise les outils. Claude Coquerel bénéficie de cette atmosphère. Paris devient le centre de la pensée, et sa croissance démographique offre aux maraîchers d'Aubervilliers un marché colossal et en pleine mutation." },
-        "revolution": { t: "Révolution Française (1789)", i: "Le passage à la Citoyenneté", c: "Chute de l'Ancien Régime. Pour la famille Coquerel, cela signifie la fin des redevances seigneuriales et la transformation de leurs baux en pleine propriété. Le paysan n'est plus un sujet soumis à son seigneur mais un Citoyen acteur de la vie politique locale. Pierre Coquerel a vécu ce basculement où la propriété foncière est devenue protégée par la loi républicaine, changeant à jamais l'avenir de la lignée." },
-        "napoleon1": { t: "Napoléon Ier (1804-1815)", i: "L'Aigle de l'Empire", c: "Il stabilise les acquis de la Révolution. On lui doit le Code Civil (1804), qui régit encore la vie des Français. Ses guerres de conquête ont mobilisé des millions de jeunes hommes issus des campagnes, mais ses réformes administratives ont apporté une stabilité juridique cruciale pour les familles de propriétaires terriens. Les Coquerel voient sous son règne la consécration de la classe rurale." },
-        "cholera": { t: "Choléra de 1832", i: "La peur bleue à Paris", c: "Pandémie foudroyante venue d'Asie, elle tue plus de 19 000 personnes à Paris en quelques mois. Elle révèle l'insalubrité des faubourgs industriels. À Aubervilliers, Pierre Coquerel voit son village terrifié. Cette épidémie obligera l'État à lancer les grands travaux d'assainissement qui transformeront la vie urbaine." },
-        "canal": { t: "Canal Saint-Denis (1821)", i: "L'artère de l'industrie", c: "Creusé sous la Restauration, ce canal traverse Aubervilliers. S'il facilite le transport agricole, il amène surtout les péniches chargées de charbon. C'est l'étincelle qui déclenche l'industrialisation massive d'Aubervilliers. Les premières usines chimiques s'installent sur ses berges, au milieu des champs maraîchers. Pour les Coquerel, c'est le début de la fin du paysage rural de leur enfance." },
-        "haussmann": { t: "Baron Haussmann", i: "Le transformateur de Paris", c: "Préfet sous Napoléon III, il mène les transformations titanesques de Paris. Pour les Coquerel, ces travaux sont une aubaine économique. Un Paris plus moderne demande des quantités phénoménales de légumes frais. L'essor des Halles permet aux maraîchers d'Aubervilliers de devenir de véritables entrepreneurs agricoles, livrant chaque nuit leurs légumes vers le cœur de la capitale." },
-        "ww1": { t: "Guerre de 1914-1918", i: "Le sacrifice paysan", c: "Conflit mondial qui a vu la France perdre 1,4 million de soldats, principalement paysans. Cette guerre a 'saigné' les campagnes. À Aubervilliers, le conflit a transformé les usines en centres d'armement. Louis Laurent a vécu ce traumatisme collectif. Après 1918, le monde rural ne sera plus jamais le même : la mécanisation s'accélère car les bras manquent." },
-        "occupation": { t: "L'Occupation (1940-1944)", i: "Les années de privations", c: "Période sombre où la France est sous contrôle allemand. C'est le temps du rationnement et des réquisitions. Les terres agricoles sont surveillées. Pour les Coquerel, cette période marque la fin définitive d'une certaine insouciance. Louis Alfred se marie sous l'Occupation, témoignant de la volonté de la famille de continuer à se perpétuer malgré l'oppression." },
-        "trente": { t: "Trente Glorieuses (1945-1975)", i: "Le boom économique", c: "Période de croissance exceptionnelle après la Libération. La France se modernise à une vitesse fulgurante. Pour la Saga Coquerel, c'est le moment de la rupture définitive avec le monde de la terre. Les enfants des laboureurs deviennent des citadins. La Saga quitte le sillon de la charrue pour entrer de plain-pied dans la société technologique." },
-        "internet": { t: "Révolution d'Internet", i: "Le monde connecté", c: "Avènement du réseau mondial changeant radicalement la communication. Pour la généalogie, c'est une révolution. Des archives autrefois inaccessibles sont numérisées. Cela permet à Arnaud de reconnecter les pièces du puzzle familial éparpillées sur quatre siècles, créant une mémoire numérique impérissable pour les générations futures." },
-        [cite_start]"rollon": { t: "Rollon (v. 846-930)", i: "Le Fondateur", c: "Chef viking. Par le traité de Saint-Clair-sur-Epte en 911, il reçoit les terres qui deviendront la Normandie. Il est l'ancêtre direct de Guillaume le Conquérant et le socle de l'identité normande de la famille Coquerel. [cite: 5]" },
-        "guillaume": { t: "Guillaume le Conquérant", i: "Duc et Roi", c: "Duc de Normandie devenu roi d'Angleterre en 1066 après Hastings. [cite_start]C'est sous son commandement que les ancêtres normands des Coquerel ont traversé la Manche. [cite: 12]" },
-        "domesday": { t: "Domesday Book (1086)", i: "Le grand inventaire", c: "Grand recensement des terres d'Angleterre. [cite_start]Ce document mentionne Walter Cockerell comme propriétaire terrien dans le Gloucestershire, prouvant l'implantation réussie de la famille. [cite: 13, 28]" },
-        "paysdecaux": { t: "Pays de Caux", i: "Berceau ancestral", c: "Région de Haute-Normandie (Seine-Maritime). [cite_start]C'est ici que la famille Coquerel a prospéré durant des siècles avant que des branches n'essaiment. [cite: 9, 24]" }
+        "henri4": { t: "Henri IV (1589-1610)", i: "Le Roi de la Paix", c: "Premier roi Bourbon, il pacifie la France après les Guerres de Religion par l'Édit de Nantes. Il favorise l'agriculture ('la poule au pot') et protège les laboureurs." },
+        "fronde": { t: "La Fronde (1648-1653)", i: "Guerre Civile", c: "Période de troubles durant l'enfance de Louis XIV. Aubervilliers fut pillée et brûlée par les armées de mercenaires assiégeant Paris." },
+        "hiver1709": { t: "Grand Hiver (1709)", i: "Apocalypse climatique", c: "En janvier 1709, le froid chute à -20°C. Les céréales meurent, entraînant une famine qui tue 600 000 personnes en France." },
+        "revolution": { t: "Révolution Française (1789)", i: "Fin d'un monde", c: "Chute de la monarchie. Pour les Coquerel, cela signifie la fin des redevances seigneuriales et l'accès à la pleine propriété." },
+        "ww1": { t: "Guerre de 1914-1918", i: "Le sacrifice paysan", c: "Conflit mondial ayant décimé la jeunesse rurale. Louis Laurent a vécu ce traumatisme total." },
+        "internet": { t: "Internet", i: "Révolution Numérique", c: "Permet aujourd'hui de reconnecter les pièces du puzzle familial éparpillées sur quatre siècles." },
+        "rollon": { t: "Rollon", i: "Le Fondateur", c: "Chef viking recevant la Normandie en 911. Socle de l'identité normande de la famille." },
+        "guillaume": { t: "Guillaume le Conquérant", i: "Duc et Roi", c: "Duc de Normandie devenu roi d'Angleterre en 1066 après la bataille d'Hastings." }
     };
 
     // --- 4. LOGIQUE D'AFFICHAGE ---
@@ -274,15 +338,14 @@
 
         let html = `<div class="content-card">`;
         if(page === 'origine') {
-            html += `<span class="vignette-badge">${item.badge}</span><h2 class="vignette-title" style="font-size:1.2rem; margin:10px 0;">${item.title}</h2>${item.content}`;
+            html += `<span class="vignette-badge">${item.badge}</span><h2>${item.title}</h2>${item.content}`;
         } else {
-            html += `<span class="vignette-badge">Gén. ${item.gen}</span><h2 class="vignette-title" style="font-size:1.2rem; margin:10px 0;">${item.name}</h2>
-                     <div class="sec-title">Dates (Naissance, Décès, Âge)</div><p>${item.dates}</p>
+            html += `<span class="vignette-badge">Gén. ${item.gen}</span><h2>${item.name}</h2>
+                     <div class="sec-title">Dates Clés</div><p>${item.dates}</p>
                      <div class="sec-title">Épouse</div><p style="color:#C2185B; font-weight:bold;">${item.spouse}</p>
                      <div class="sec-title">👑 Contexte & Règnes</div><div class="text-body">${item.contexte}</div>
-                     <div class="sec-title">🚜 Place Sociale & Métier</div><div class="text-body">${item.social}</div>
-                     ${item.defis ? `<div class="sec-title">⚠️ Défis majeurs</div><div class="text-body">${item.defis}</div>` : ''}
-                     <div class="sec-title">🛠 Technologie & Vie</div><div class="text-body">${item.techno}</div>`;
+                     <div class="sec-title">🚜 Place Sociale</div><div class="text-body">${item.social}</div>
+                     <div class="sec-title">🛠 Technologie</div><div class="text-body">${item.techno}</div>`;
         }
         html += `</div>`;
         document.getElementById(contentDiv).innerHTML = html;
@@ -307,18 +370,21 @@
     function openZoom(src) { document.getElementById('zoom-img').src = src; document.getElementById('zoom-modal').style.display = 'flex'; }
     function closeZoom() { document.getElementById('zoom-modal').style.display = 'none'; }
 
-    const origMenu = document.getElementById('orig-menu');
-    origines.forEach((o, i) => { origMenu.innerHTML += `<div class="vignette" onclick="openDetail('origine', ${i})"><span class="vignette-badge">${o.badge}</span><div class="vignette-title">${o.title}</div></div>`; });
+    // INITIALISATION AUTOMATIQUE
+    window.onload = function() {
+        const origMenu = document.getElementById('orig-menu');
+        origines.forEach((o, i) => { origMenu.innerHTML += `<div class="vignette" onclick="openDetail('origine', ${i})"><span class="vignette-badge">${o.badge}</span><div class="vignette-title">${o.title}</div></div>`; });
 
-    const genList = document.getElementById('gen-list');
-    generations.forEach((g, i) => { genList.innerHTML += `<div class="vignette" onclick="openDetail('ancetres', ${i})"><span class="vignette-badge">Gén. ${g.gen}</span><div class="vignette-title">${g.name}</div></div>`; });
+        const genList = document.getElementById('gen-list');
+        generations.forEach((g, i) => { genList.innerHTML += `<div class="vignette" onclick="openDetail('ancetres', ${i})"><span class="vignette-badge">Gén. ${g.gen}</span><div class="vignette-title">${g.name}</div></div>`; });
 
-    const glosDiv = document.getElementById('glossaire-content');
-    Object.keys(glossaire).sort().forEach(key => { const item = glossaire[key]; glosDiv.innerHTML += `<div class="glos-item" id="bio-${key}"><b>${item.t}</b><i>${item.i}</i><p>${item.c}</p></div>`; });
+        const glosDiv = document.getElementById('glossaire-content');
+        Object.keys(glossaire).sort().forEach(key => { const item = glossaire[key]; glosDiv.innerHTML += `<div class="glos-item" id="bio-${key}"><b>${item.t}</b><i>${item.i}</i><p>${item.c}</p></div>`; });
 
-    [cite_start]const timelineData = [["911", "Rollon", "Normandie [cite: 5][cite_start]"], ["1066", "B. d'Hastings", "Angleterre [cite: 12]"], ["1600", "I. Pierre", "Henri IV"], ["1789", "VIII. Pierre", "Révolution"], ["1870", "IX. Michel", "Siège Paris"], ["1914", "XI. L. Laurent", "Guerre 14-18"], ["1940", "XI. L. Laurent", "Occupation"], ["2026", "XV. Manon & Arthur", "Avenir"]];
-    const timelineBody = document.getElementById('timeline-body');
-    timelineData.forEach(t => { timelineBody.innerHTML += `<tr><td style="padding:10px; border-bottom:1px solid #eee;"><b>${t[0]}</b></td><td style="padding:10px; border-bottom:1px solid #eee;">${t[1]}</td><td style="padding:10px; border-bottom:1px solid #eee;">${t[2]}</td></tr>`; });
+        const timelineBody = document.getElementById('timeline-body');
+        const timelineData = [["911", "Rollon", "Normandie"], ["1066", "Hastings", "Angleterre"], ["1600", "I. Pierre", "Henri IV"], ["1789", "VIII. Pierre", "Révolution"], ["1870", "IX. Michel", "Siège Paris"], ["2026", "XV. Manon & Arthur", "Avenir"]];
+        timelineData.forEach(t => { timelineBody.innerHTML += `<tr><td style="padding:10px; border-bottom:1px solid #eee;"><b>${t[0]}</b></td><td style="padding:10px; border-bottom:1px solid #eee;">${t[1]}</td><td style="padding:10px; border-bottom:1px solid #eee;">${t[2]}</td></tr>`; });
+    };
 
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
 </script>
