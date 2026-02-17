@@ -1,4 +1,4 @@
-const CACHE_NAME = 'coquerel-v42-final-fix';
+const CACHE_NAME = 'coquerel-v43-zoom-feature';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
