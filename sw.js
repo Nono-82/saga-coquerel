@@ -1,4 +1,4 @@
-const CACHE_NAME = 'coquerel-v34-supreme'; // Changement de nom pour forcer Safari
+const CACHE_NAME = 'coquerel-v34-supreme';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
