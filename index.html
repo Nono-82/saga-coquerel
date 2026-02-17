@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Saga Coquerel - V37</title>
+    <title>Saga Coquerel - V38</title>
     
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon.png">
@@ -19,8 +19,9 @@
         header { background: var(--primary); color: white; padding: 20px 15px; text-align: center; border-bottom: 4px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
         h1 { margin: 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
 
+        /* NAVIGATION BASSE */
         nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; border-top: 1px solid #ddd; box-shadow: 0 -2px 15px rgba(0,0,0,0.1); z-index: 1000; padding-bottom: env(safe-area-inset-bottom); }
-        .nav-item { flex: 1; text-align: center; padding: 10px 0; font-size: 0.55rem; color: #888; text-decoration: none; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+        .nav-item { flex: 1; text-align: center; padding: 12px 0; font-size: 0.55rem; color: #888; text-decoration: none; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .nav-item.active { color: var(--gold); font-weight: bold; }
         .nav-icon { font-size: 1.2rem; margin-bottom: 2px; }
 
@@ -42,7 +43,7 @@
         .sec-title { color: var(--gold); font-size: 0.85rem; font-weight: bold; margin-top: 20px; border-bottom: 1px solid #eee; text-transform: uppercase; padding-bottom: 3px; }
         .text-body { font-size: 0.95rem; line-height: 1.6; text-align: justify; margin-top: 8px; color: #333; }
 
-        /* GLOSSAIRE GRAND FORMAT */
+        /* GLOSSAIRE */
         .glos-link { color: var(--gold); font-weight: bold; text-decoration: none; border-bottom: 1px dotted var(--gold); cursor: pointer; }
         .glos-item { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid var(--gold); box-shadow: 0 4px 12px rgba(0,0,0,0.08); scroll-margin-top: 100px; }
         .glos-item b { display: block; color: var(--primary); font-size: 1.2rem; margin-bottom: 8px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
@@ -56,7 +57,7 @@
         .stat-val { display: block; font-size: 1.3rem; font-weight: bold; color: var(--primary); }
         .stat-lbl { font-size: 0.65rem; text-transform: uppercase; color: #888; margin-top: 5px; }
 
-        /* IMAGES & ZOOM (CORRIGÉ) */
+        /* IMAGES & ZOOM */
         .frise-img { width: 100%; border-radius: 8px; border: 2px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px; cursor: pointer; }
         
         #zoom-modal { 
@@ -64,7 +65,7 @@
             position: fixed; 
             top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0,0,0,0.95); 
-            z-index: 10000; /* Z-Index très haut pour passer devant tout */
+            z-index: 10000; 
             align-items: center; 
             justify-content: center; 
             touch-action: none;
@@ -115,11 +116,11 @@
         <img src="image1.jpg" class="frise-img" onclick="openZoom(this.src)">
         <img src="image2.jpg" class="frise-img" onclick="openZoom(this.src)">
         
-        <h3 style="color:var(--primary); margin-top:30px; border-bottom:2px solid var(--gold); padding-bottom:5px;">Chronologie PDF & Familiale</h3>
+        <h3 style="color:var(--primary); margin-top:30px; border-bottom:2px solid var(--gold); padding-bottom:5px;">La Frise des Coquerel</h3>
         <div style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; font-size:0.8rem; background:white;">
                 <thead style="background:var(--primary); color:white;">
-                    <tr><th style="padding:10px;">Date</th><th style="padding:10px;">Événement</th></tr>
+                    <tr><th style="padding:10px; width:15%;">Année</th><th style="padding:10px; width:35%;">Ancêtre</th><th style="padding:10px;">Événement Historique</th></tr>
                 </thead>
                 <tbody id="timeline-body"></tbody>
             </table>
@@ -264,7 +265,7 @@
         }
     ];
 
-    // --- 2. DONNÉES HISTOIRE (INTOUCHÉES AVEC DATES) ---
+    // --- 2. DONNÉES HISTOIRE (INTOUCHÉES) ---
     const generations = [
         { gen: "I", name: "Pierre COQUEREL (l'Ancien)", dates: "Naissance v. 1575 | Décès v. 1630 (v. 55 ans)", spouse: "Marie GORAN", contexte: `Il naît durant les <span class="glos-link" onclick="goToGlos('religion')">Guerres de Religion</span>. Il voit la paix revenir avec <span class="glos-link" onclick="goToGlos('henri4')">Henri IV</span> et l'<span class="glos-link" onclick="goToGlos('nantes')">Édit de Nantes</span>.`, social: `Il est <strong>Laboureur</strong>, signifiant qu'il appartient à l'aristocratie paysanne possédant train de culture et bêtes de trait.`, techno: `L'agriculture est manuelle et pénible. Le village d'Aubervilliers est alors un lieu de pèlerinage célèbre.` },
         { gen: "II", name: "Pierre COQUEREL", dates: "Naissance 1618 | Décès 13 mai 1653 (35 ans)", spouse: "Marie MAHEUT (Décès 1654)", contexte: `Époque de <span class="glos-link" onclick="goToGlos('richelieu')">Richelieu</span>. Il subit les pillages de <span class="glos-link" onclick="goToGlos('fronde')">La Fronde</span>, guerre civile violente.`, social: `Les récoltes sont régulièrement réquisitionnées par les armées assiégeant Paris.`, defis: `Survivre aux mercenaires de passage et maintenir l'exploitation malgré le chaos.` },
@@ -283,7 +284,7 @@
         { gen: "XV", name: "Manon (2016) & Arthur (2019)", dates: "Avenir", spouse: "L'Avenir", contexte: `Héritiers directs de 15 générations d'histoire ininterrompue.`, defis: `Écrire le prochain chapitre de la Saga Coquerel.`, techno: `Digital Natives (Génération Alpha).` }
     ];
 
-    // --- 3. GLOSSAIRE (GRAND FORMAT ENCYCLOPÉDIQUE - 100+ MOTS) ---
+    // --- 3. GLOSSAIRE (INTOUCHÉ) ---
     const glossaire = {
         "religion": { t: "Guerres de Religion (1562-1598)", i: "Le déchirement du Royaume", c: "Série de huit conflits civils d'une violence inouïe qui ont opposé catholiques et protestants (huguenots) en France durant la seconde moitié du XVIe siècle. Marquées par des massacres emblématiques comme la Saint-Barthélemy, ces guerres ont ruiné l'économie du royaume, disloqué les structures sociales et semé la terreur dans les campagnes. Les pillages étaient constants. Ces conflits cessent grâce à Henri IV, qui ramène l'ordre et la paix civile par le compromis. Pour un laboureur comme Pierre l'Ancien, cette période signifiait l'insécurité permanente et la nécessité de protéger ses récoltes et sa famille contre les bandes armées errantes." },
         "henri4": { t: "Henri IV (1589-1610)", i: "Le Roi de la Paix", c: "Surnommé le 'Bon Roi Henri' ou 'Le Vert Galant', il est le fondateur de la dynastie des Bourbons. Héritant d'un royaume en ruine, il a l'intelligence politique de se convertir au catholicisme ('Paris vaut bien une messe') pour unifier le pays. Son règne est synonyme de reconstruction. Il favorise l'agriculture avec son ministre Sully, déclarant vouloir que chaque paysan puisse mettre 'la poule au pot le dimanche'. Il relance les routes et les canaux. Son assassinat en 1610 par Ravaillac fut vécu comme un drame national, laissant le souvenir d'un roi proche de son peuple." },
@@ -307,14 +308,14 @@
         "domesday": { t: "Domesday Book (1086)", i: "Le Livre du Jugement Dernier", c: "Recensement fiscal unique en son genre commandé par Guillaume pour connaître la richesse exacte de son nouveau royaume. Il liste chaque manoir, chaque porc, chaque charrue. C'est dans ce document inestimable qu'apparaît Walter Cockerell, preuve irréfutable de l'ancienneté et de la réussite de la famille." }
     };
 
-    // --- 4. LOGIQUE TECHNIQUE (Z-INDEX CORRIGÉ ET FLUX DE DATES PDF) ---
+    // --- 4. LOGIQUE TECHNIQUE (LIENS CORRIGÉS) ---
     function showPage(id, el) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
         document.getElementById(id).classList.add('active');
-        el.classList.add('active');
+        if(el) el.classList.add('active');
         window.scrollTo(0,0);
-        document.getElementById('app-title').innerText = el.querySelector('span:last-child').innerText;
+        document.getElementById('app-title').innerText = el ? el.querySelector('span:last-child').innerText : "Saga Coquerel";
         closeDetail('origine'); closeDetail('ancetres');
     }
 
@@ -352,6 +353,22 @@
         if(document.getElementById(detailDiv)) document.getElementById(detailDiv).style.display = 'none';
     }
 
+    function goToGlos(key) {
+        // 1. Activer l'onglet Glossaire (index 4)
+        showPage('glossaire', document.querySelectorAll('.nav-item')[4]);
+        
+        // 2. Attendre que l'onglet soit visible et rendu
+        setTimeout(() => {
+            const target = document.getElementById('bio-' + key);
+            if(target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Petit effet visuel pour repérer l'item
+                target.style.backgroundColor = '#fffbeb';
+                setTimeout(() => target.style.backgroundColor = 'white', 1000);
+            }
+        }, 300); // Délai augmenté à 300ms pour garantir le rendu sur mobile
+    }
+
     function openZoom(src) { document.getElementById('zoom-img').src = src; document.getElementById('zoom-modal').style.display = 'flex'; }
     function closeZoom() { document.getElementById('zoom-modal').style.display = 'none'; }
 
@@ -366,9 +383,29 @@
         const glosDiv = document.getElementById('glossaire-content');
         Object.keys(glossaire).sort().forEach(key => { const item = glossaire[key]; glosDiv.innerHTML += `<div class="glos-item" id="bio-${key}"><b>${item.t}</b><i>${item.i}</i><p>${item.c}</p></div>`; });
 
+        // MISE À JOUR DU TABLEAU FRISE SELON LE PDF
         const timelineBody = document.getElementById('timeline-body');
-        const timelineData = [["911", "Traité de St-Clair"], ["1066", "Bataille d'Hastings"], ["1086", "Domesday Book"], ["1600", "Pierre l'Ancien"], ["1789", "Révolution Fr."], ["1870", "Siège de Paris"], ["1914", "Guerre Mondiale"], ["2019", "Arthur Coquerel"]];
-        timelineData.forEach(t => { timelineBody.innerHTML += `<tr><td style="padding:10px; border-bottom:1px solid #eee;"><b>${t[0]}</b></td><td style="padding:10px; border-bottom:1px solid #eee;">${t[1]}</td></tr>`; });
+        const timelineData = [
+            ["v. 1600", "Pierre l'Ancien (Gén. I)", "Henri IV règne sur la France et consolide la paix avec l'Édit de Nantes."],
+            ["1624", "Christophe (Gén. III)", "Le Cardinal de Richelieu devient le principal ministre de Louis XIII."],
+            ["1652", "Jacques (Gén. IV)", "Fin de la Fronde; le jeune Louis XIV commence à affirmer son pouvoir."],
+            ["1696", "Claude (Gén. V)", "Louis XIV fait construire le Dôme des Invalides à Paris."],
+            ["1730", "Pierre (Gén. VI)", "Apogée du Siècle des Lumières sous le règne de Louis XV."],
+            ["1761", "Pierre (Gén. VII)", "En pleine Guerre de Sept Ans; la France brille par sa culture et sa philosophie."],
+            ["1789", "Pierre Honoré Claude (Gén. VIII)", "Prise de la Bastille et Déclaration des Droits de l'Homme. La France bascule."],
+            ["1815", "Pierre Honoré Claude (Gén. IX)", "Bataille de Waterloo et chute définitive de Napoléon Ier."],
+            ["1842", "Pierre Honoré (Gén. X)", "Inauguration des premières grandes lignes de chemin de fer en France."],
+            ["1880", "Louis Laurent (Gén. XI)", "Le 14 juillet devient officiellement la Fête Nationale française."],
+            ["1912", "Louis Alfred (Gén. XII)", "Naufrage du Titanic; le monde entre dans l'ère de la modernité industrielle."],
+            ["1948", "Alain Robert (Gén. XIII)", "Adoption de la Déclaration Universelle des Droits de l'Homme à Paris."],
+            ["1982", "Arnaud (Gén. XIV)", "Lancement du Minitel et première Fête de la Musique en France."],
+            ["2016", "Manon (Gén. XV)", "Entrée en vigueur de l'Accord de Paris sur le climat."],
+            ["2019", "Arthur (Gén. XV)", "50ème anniversaire du premier pas sur la Lune."]
+        ];
+        
+        timelineData.forEach(t => { 
+            timelineBody.innerHTML += `<tr><td style="padding:10px; border-bottom:1px solid #eee; font-weight:bold; color:#B8860B;">${t[0]}</td><td style="padding:10px; border-bottom:1px solid #eee; font-style:italic;">${t[1]}</td><td style="padding:10px; border-bottom:1px solid #eee;">${t[2]}</td></tr>`; 
+        });
     });
 
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
